@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cf956515a62934bb178bfdcaa07143, type: 3}
+  m_Name: Key
+  m_EditorClassIdentifier: 
+  itemName: Key
+  icon: {fileID: 21300000, guid: dd2093220f7193e4b9ab8ea7a1e9bd0a, type: 3}
+  lookDescription:
+  - That is a sweetass key!
+  useWrongText:
+  - The key doesn't fit there.
