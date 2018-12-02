@@ -16,5 +16,5 @@ MonoBehaviour:
   lookDescription:
   - It's a candle...
   useWrongText:
-  - Is this flamable?
-  - Put the candle back!
+  - Is this flammable?
+  - This doesn't go here.
