@@ -14,6 +14,8 @@ MonoBehaviour:
   itemName: new item
   icon: {fileID: 0}
   lookDescription:
-  - 
+  - This carving reminds me of tentacles.
+  - Looking at this somehow makes me think I should sacrifice myself.
+  - I want to get rid of this as quickly as possible.
   useWrongText:
-  - 
+  - I don't think this goes here.

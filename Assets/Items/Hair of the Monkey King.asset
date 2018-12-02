@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Hair of the Monkey King
   m_EditorClassIdentifier: 
   itemName: Hair of the Monkey King
-  icon: {fileID: 21300000, guid: f32bc56a46d892c43b4a3ff910de22e8, type: 3}
+  icon: {fileID: 21300000, guid: 8a952459f3377be43b3075626547a502, type: 3}
   lookDescription:
-  - 
+  - This could transform into anything.
   useWrongText:
-  - 
+  - This won't do any good unless it transforms.

@@ -14,6 +14,6 @@ MonoBehaviour:
   itemName: Mercury Piece
   icon: {fileID: 0}
   lookDescription:
-  - 
+  - This carving reminds me of Mercury. The god, not the planet.
   useWrongText:
-  - 
+  - I don't think this goes here.

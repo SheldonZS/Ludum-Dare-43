@@ -15,14 +15,12 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d778acb66b3730d409db80e7e430050e, type: 3}
   lookDescription:
   - I can touch things! I can look at things!
-  - Where am I?
-  - Why am I here?
-  - What a beautiful hand.
+  - What a beautiful hand. Because it's mine.
   - What do these gods want?
-  - The gods must be crazy...
+  - The gods must be crazy.
   - Nani!?
-  - Who? What? When? Where? Why? How?
   - Stop that!
-  - I know this place like the back of my hand... what does that look like again?
+  - I know this place like the back of my hand! Because I don't know what my hand
+    looks like.
   useWrongText:
-  - 
+  - Nope, not there.

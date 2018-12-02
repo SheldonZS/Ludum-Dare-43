@@ -15,5 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 56b91df9989fbd54c95a1bf9db056e53, type: 3}
   lookDescription:
   - Sonuvabitch!
+  - Apparently I can't be trusted with knives.
   useWrongText:
-  - 
+  - I don't want to cut that. Or get my blood on it.

@@ -14,6 +14,6 @@ MonoBehaviour:
   itemName: Baldr Piece
   icon: {fileID: 0}
   lookDescription:
-  - 
+  - This carving reminds me of Baldr.
   useWrongText:
-  - 
+  - I don't think this goes here.

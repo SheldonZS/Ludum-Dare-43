@@ -15,5 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 421d7d892dae6fb438c216cdaf219465, type: 3}
   lookDescription:
   - Just how old is this bottle?
+  - This is an uncomfortably deep red.
   useWrongText:
   - That can't drink.

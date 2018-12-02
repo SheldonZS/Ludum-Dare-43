@@ -14,7 +14,7 @@ MonoBehaviour:
   itemName: Candle
   icon: {fileID: 21300000, guid: 0204525838fa66b47a545012fc12a40b, type: 3}
   lookDescription:
-  - It's a candle...
+  - It's a candle.
   useWrongText:
   - Is this flammable?
   - This doesn't go here.
