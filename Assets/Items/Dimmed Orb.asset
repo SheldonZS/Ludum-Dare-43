@@ -15,4 +15,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: fcdf757743428bf4ab97a5a88345a694, type: 3}
   lookDescription:
   - A brilliant ball of light.
-  useWrongText: []
+  useWrongText:
+  - 

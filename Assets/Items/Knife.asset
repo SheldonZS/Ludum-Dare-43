@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   itemName: Knife
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5fc3fa64edc36b34ca7fcbe9ec6403f3, type: 3}
   lookDescription:
   - Here we are!
   - About time.
-  useWrongText: []
+  useWrongText:
+  - 

@@ -15,4 +15,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 3f0251c126747a04bae7878929ea6377, type: 3}
   lookDescription:
   - It's so bright
-  useWrongText: []
+  useWrongText:
+  - 

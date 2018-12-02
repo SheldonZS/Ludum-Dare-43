@@ -9,9 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13cf956515a62934bb178bfdcaa07143, type: 3}
-  m_Name: Monkey King Staff
+  m_Name: Staff
   m_EditorClassIdentifier: 
-  itemName: Monkey King Staff
-  icon: {fileID: 0}
-  lookDescription: []
-  useWrongText: []
+  itemName: Staff
+  icon: {fileID: 21300000, guid: df877ddca5b68ec4c8bd0404f48aef10, type: 3}
+  lookDescription:
+  - I thought it'd be bigger...
+  useWrongText:
+  - 

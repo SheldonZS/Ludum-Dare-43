@@ -17,4 +17,5 @@ MonoBehaviour:
   - A beautiful lion head on a chain.
   - It's surrounded by darkness.
   - It seems to swallow the light.
-  useWrongText: []
+  useWrongText:
+  - 

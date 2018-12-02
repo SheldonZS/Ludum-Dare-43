@@ -7,9 +7,10 @@ public class clickable : ScriptableObject {
 
     public Sprite sprite;
     public Vector3 position;
+    public Vector2 size;
 
     [Header("On Click")]
-    public Vector2 moveTo;
+    public Vector3 moveTo;
     public bool facingRight;
     
     [Header("Hand Action")]
@@ -18,14 +19,16 @@ public class clickable : ScriptableObject {
     public clickableAction[] handActions;
 
     [Header("Use Item")]
-    public item[] item;
+    public item correctItem;
     public bool consumeItem;
     public characterAnimation correctAnimation;
+    public string correctText;
     public clickableAction[] correctActions;
 
     [Header("Wrong Item")]
     public characterAnimation wrongAnimation;
     public string wrongOverrideText;
+    public clickableAction[] wrongActions;
 
 }
 
@@ -35,7 +38,7 @@ public enum action { none, removeThis, addClickable, addItemToInventory, codeAct
 [System.Serializable]
 public class clickableAction
 {
-    action action;
-    item item;
-    clickable clickable;
+    public action action;
+    public item item;
+    public clickable clickable;
 }

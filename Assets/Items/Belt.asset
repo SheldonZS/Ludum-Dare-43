@@ -17,4 +17,5 @@ MonoBehaviour:
   - What's that smell?
   - Are those... intestiness?
   - It's red and sticky.
-  useWrongText: []
+  useWrongText:
+  - 

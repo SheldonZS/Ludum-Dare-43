@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pot of Wisdom
   icon: {fileID: 21300000, guid: 9aa9d189b7cbd7b478e8b0563f525da4, type: 3}
-  lookDescription: []
-  useWrongText: []
+  lookDescription:
+  - 
+  useWrongText:
+  - 

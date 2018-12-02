@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fast Food
   icon: {fileID: 0}
-  lookDescription: []
-  useWrongText: []
+  lookDescription:
+  - 
+  useWrongText:
+  - 

@@ -28,10 +28,4 @@ public class DataBucket : MonoBehaviour {
         else
             Destroy(gameObject);
 	}
-
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-            Debug.Log(Input.mousePosition);
-    }
 }

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: new item
   icon: {fileID: 0}
-  lookDescription: []
-  useWrongText: []
+  lookDescription:
+  - 
+  useWrongText:
+  - 

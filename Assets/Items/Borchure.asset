@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Brochure
   icon: {fileID: 21300000, guid: a6c0d9a8fa4dc414db298a7650ee853a, type: 3}
-  lookDescription: []
-  useWrongText: []
+  lookDescription:
+  - 
+  useWrongText:
+  - 

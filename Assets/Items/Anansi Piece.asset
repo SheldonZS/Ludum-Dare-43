@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Anansi Piece
   icon: {fileID: 0}
-  lookDescription: []
-  useWrongText: []
+  lookDescription:
+  - 
+  useWrongText:
+  - 
