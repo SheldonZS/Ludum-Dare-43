@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
+  m_Name: Room Main Temple
+  m_EditorClassIdentifier: 
+  roomImage: {fileID: 21300000, guid: ed69c60c98b77d049ba49052ea75b5f0, type: 3}
+  playerVisible: 1
+  clickables:
+  - {fileID: 11400000, guid: 4d2d74b3e5a8b0a489f273cb8b9d9dec, type: 2}
+  - {fileID: 11400000, guid: 71d4071fa4fa0314787998fb94c40c8e, type: 2}
+  - {fileID: 11400000, guid: c21e01d9701096347bc2ea2d79947a2c, type: 2}
+  - {fileID: 11400000, guid: cedd02206ada0a346a06d392ebdcad63, type: 2}

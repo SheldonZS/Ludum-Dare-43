@@ -7,7 +7,11 @@ public class InventoryManager : MonoBehaviour {
 
     public Sprite nextArrow;
     public Sprite blank;
+
+    [Header("Initial Inventory")]
     public item[] defaultInventory;
+
+    [Header("Recipe Book")]
     public recipeSO recipeBook;
 
     private InventoryItem[] inventorySlots;
