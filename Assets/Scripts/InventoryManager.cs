@@ -8,10 +8,13 @@ public class InventoryManager : MonoBehaviour {
     public Sprite nextArrow;
     public Sprite blank;
     public item[] defaultInventory;
+    public recipeSO recipeBook;
 
     private InventoryItem[] inventorySlots;
     private List<item> inventory;
     private textBox textBox;
+    private AudioSource SFX;
+    private playerController player;
 
     private int selectedItem;
     private int currentPage;
@@ -24,6 +27,9 @@ public class InventoryManager : MonoBehaviour {
         inventorySlots = new InventoryItem[10];
         selectedFrame = GetComponentInChildren<frameControl>();
         selectedItem = 0;
+
+        SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
+        player = GameObject.Find("Protag").GetComponent<playerController>();
 
         Vector3 localPos = Vector3.zero;
         localPos.y = 64;
@@ -43,8 +49,16 @@ public class InventoryManager : MonoBehaviour {
             addItem(defaultInventory[x]);
     }
 
+    public item SelectedItem()
+    {
+        return inventory[selectedItem];
+    }
+
     public void itemClicked(int x)
     {
+        if (player.busy)
+            return;
+
         if (x == 9 && inventory.Count >= 11)
         {
             refreshInventory(currentPage + 1);
@@ -59,15 +73,51 @@ public class InventoryManager : MonoBehaviour {
             {
                 textBox.displayText(currentItem.lookDescription[Random.Range(0, currentItem.lookDescription.Length)]);
             }
-            //fusion script here
+
+            bool combine = false;
+
+            foreach (recipe r in recipeBook.recipes)
+            {
+                if (currentItem == r.item1 && targetItem == r.item2 || targetItem == r.item1 && currentItem == r.item2)
+                {
+                    Debug.Log(r.result.name);
+                    if (r.result.name == "Bloody Knife")
+                    {
+                        if (currentItem.name == "Knife" && targetItem.name == "Hand")
+                        {
+                            textBox.displayText("Ow! Damnit! I cut myself!");
+                            inventory[selectedItem] = r.result;
+                            refreshInventory(currentPage);
+                            combine = true;
+                        }            
+                    }
+                    else
+                    {
+                        inventory.Remove(currentItem);
+                        inventory.Remove(targetItem);
+                        addItem(r.result);
+                        currentItem = r.result;
+                        targetItem = null;
+                        selectedItem = inventory.FindIndex(i => i == r.result);
+                        combine = true;
+
+                        if (selectedItem >= 9 && inventory.Count > 10)
+                            selectedFrame.setSlot(selectedItem % 9);
+                        else selectedFrame.setSlot(selectedItem);
+                    }
+                }
+            }
+
+            if (combine == true)
+            {
+                SFX.PlayOneShot((AudioClip) Resources.Load("SFX/fuse"));
+            }
             else
             {
                 selectedItem = targetItemSlot;
                 selectedFrame.setSlot(x);
             }
         }
-
-
     }
 
     public void addItem(item item)

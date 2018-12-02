@@ -8,7 +8,7 @@ public class frameControl : MonoBehaviour {
     private RectTransform rt;
     private Image image;
 
-    private void Start()
+    private void Awake()
     {
         rt = GetComponent<RectTransform>();
         image = GetComponent<Image>();

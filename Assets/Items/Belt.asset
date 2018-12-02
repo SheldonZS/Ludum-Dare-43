@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13cf956515a62934bb178bfdcaa07143, type: 3}
-  m_Name: Candle
+  m_Name: Belt
   m_EditorClassIdentifier: 
-  itemName: Candle
-  icon: {fileID: 21300000, guid: 0204525838fa66b47a545012fc12a40b, type: 3}
+  itemName: Belt
+  icon: {fileID: 21300000, guid: 0160a533e6b947740a4e85c815221b36, type: 3}
   lookDescription:
-  - It's a candle...
-  useWrongText:
-  - Is this flamable?
-  - Put the candle back!
+  - What's that smell?
+  - Are those... intestiness?
+  - It's red and sticky.
+  useWrongText: []

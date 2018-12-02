@@ -1,0 +1,146 @@
+
+protagSkel.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+armback
+  rotate: false
+  xy: 263, 162
+  size: 239, 264
+  orig: 239, 264
+  offset: 0, 0
+  index: -1
+armfront
+  rotate: true
+  xy: 330, 428
+  size: 221, 295
+  orig: 221, 295
+  offset: 0, 0
+  index: -1
+backfoot
+  rotate: true
+  xy: 1461, 707
+  size: 135, 57
+  orig: 135, 57
+  offset: 0, 0
+  index: -1
+backfoot copy
+  rotate: true
+  xy: 627, 513
+  size: 136, 57
+  orig: 136, 57
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 449
+  size: 326, 573
+  orig: 326, 573
+  offset: 0, 0
+  index: -1
+bracelet
+  rotate: false
+  xy: 263, 2
+  size: 74, 51
+  orig: 74, 51
+  offset: 0, 0
+  index: -1
+braceletback
+  rotate: false
+  xy: 504, 188
+  size: 59, 70
+  orig: 59, 70
+  offset: 0, 0
+  index: -1
+eyes
+  rotate: false
+  xy: 1820, 852
+  size: 182, 41
+  orig: 182, 41
+  offset: 0, 0
+  index: -1
+eyes shut
+  rotate: false
+  xy: 700, 658
+  size: 192, 20
+  orig: 192, 20
+  offset: 0, 0
+  index: -1
+fronthand
+  rotate: true
+  xy: 1820, 895
+  size: 127, 212
+  orig: 127, 212
+  offset: 0, 0
+  index: -1
+glasses
+  rotate: false
+  xy: 263, 55
+  size: 230, 105
+  orig: 230, 105
+  offset: 0, 0
+  index: -1
+hairbangs
+  rotate: true
+  xy: 2, 52
+  size: 395, 259
+  orig: 395, 259
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 504, 260
+  size: 128, 166
+  orig: 128, 166
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 700, 680
+  size: 340, 342
+  orig: 340, 342
+  offset: 0, 0
+  index: -1
+hips
+  rotate: false
+  xy: 330, 651
+  size: 368, 371
+  orig: 368, 371
+  offset: 0, 0
+  index: -1
+legback
+  rotate: true
+  xy: 1042, 698
+  size: 144, 417
+  orig: 144, 417
+  offset: 0, 0
+  index: -1
+legfront
+  rotate: true
+  xy: 1042, 844
+  size: 178, 469
+  orig: 178, 469
+  offset: 0, 0
+  index: -1
+mouth
+  rotate: false
+  xy: 1042, 686
+  size: 53, 10
+  orig: 53, 10
+  offset: 0, 0
+  index: -1
+ponytale
+  rotate: true
+  xy: 1513, 846
+  size: 176, 305
+  orig: 176, 305
+  offset: 0, 0
+  index: -1
+pupils
+  rotate: false
+  xy: 2, 9
+  size: 182, 41
+  orig: 182, 41
+  offset: 0, 0
+  index: -1
