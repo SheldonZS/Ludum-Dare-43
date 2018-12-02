@@ -15,6 +15,7 @@ public class playerController : MonoBehaviour {
     private SkeletonGraphic spine;
     private textBox textBox;
     private RectTransform rt;
+    private roomController roomController;
 
     private GameObject clickable;
     private Transform objectsLayer;
@@ -28,6 +29,7 @@ public class playerController : MonoBehaviour {
         rt = GetComponent<RectTransform>();
         textBox = GameObject.Find("TextBox").GetComponent<textBox>();
         spine = GetComponent<SkeletonGraphic>();
+        roomController = GetComponentInParent<roomController>();
 
         clickable = Resources.Load("Clickable") as GameObject;
         objectsLayer = GameObject.Find("Objects").transform;
@@ -49,7 +51,7 @@ public class playerController : MonoBehaviour {
         //move to target
         Vector3 moveDirection = (target.moveTo - pos).normalized;
 
-        string currentAnimation = "idle";
+        currentAnimation = "idle";
 
         while (Vector3.Distance(target.moveTo, pos) > walkSpeed)
         {
@@ -90,7 +92,7 @@ public class playerController : MonoBehaviour {
         {
             animation = target.wrongAnimation;
             actions = target.wrongActions;
-            if (target.wrongOverrideText != "")
+            if (target.overrideWrongText)
                 text = target.wrongOverrideText;
             else text = item.useWrongText[Random.Range(0,item.useWrongText.Length)];
         }
@@ -107,7 +109,7 @@ public class playerController : MonoBehaviour {
 
         if (nextAnimation != "idle")
         {
-            spine.AnimationState.AddAnimation(0, nextAnimation, false, 0f);
+            spine.AnimationState.SetAnimation(0, nextAnimation, false);
             spine.AnimationState.AddAnimation(0, "idle", true, .5f);
             yield return new WaitForSeconds(.5f);
         }
@@ -117,6 +119,8 @@ public class playerController : MonoBehaviour {
 
         currentAnimation = "idle";
 
+        busy = false;
+
         if (text != "")
             textBox.displayText(text);
 
@@ -124,10 +128,9 @@ public class playerController : MonoBehaviour {
         {
             switch(a.action)
             {
-                case action.removeThis: Destroy(targetController.gameObject); break;
+                case action.removeThis: roomController.removeFromRoom(targetController.gameObject); break;
                 case action.addClickable:
-                    GameObject newClickable = Instantiate(clickable, objectsLayer);
-                    newClickable.GetComponent<clickableController>().loadClickable(a.clickable);
+                    roomController.addToRoom(a.clickable);
                     break;
                 case action.addItemToInventory:
                     im.addItem(a.item);
@@ -138,8 +141,6 @@ public class playerController : MonoBehaviour {
                 default: break;
             }
         }
-
-        busy = false;
     }
 
     private void SpecialAction(clickable target, item item)

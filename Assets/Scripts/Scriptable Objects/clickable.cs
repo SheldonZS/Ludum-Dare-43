@@ -27,6 +27,7 @@ public class clickable : ScriptableObject {
 
     [Header("Wrong Item")]
     public characterAnimation wrongAnimation;
+    public bool overrideWrongText;
     public string wrongOverrideText;
     public clickableAction[] wrongActions;
 

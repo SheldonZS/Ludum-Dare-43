@@ -9,6 +9,7 @@ public class textBox : MonoBehaviour {
     public float showDialogueBoxTime;
     public float delayBetweenLetters;
 
+    private playerController player;
     private RectTransform rt;
     private Text text;
     private float scale;
@@ -18,6 +19,7 @@ public class textBox : MonoBehaviour {
         rt = GetComponent<RectTransform>();
         text = GetComponentInChildren<Text>();
         scale = GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor;
+        player = GameObject.Find("Protag").GetComponent<playerController>();
         text.text = "";
 	}
 	
@@ -28,6 +30,9 @@ public class textBox : MonoBehaviour {
 
     private IEnumerator animateText(string displayText)
     {
+        player.busy = true;
+        Debug.Log("Player Busy");
+
         float startTime = Time.time;
         Vector3 pos = rt.position;
 
@@ -35,12 +40,12 @@ public class textBox : MonoBehaviour {
 
         while (Time.time - startTime < showDialogueBoxTime)
         {
-            pos.y = (-256 + 256 * (Time.time - startTime) / showDialogueBoxTime) * scale;
+            pos.y = (128 * (Time.time - startTime) / showDialogueBoxTime) * scale;
             rt.position = pos;
             yield return null;
         }
 
-        pos.y = 0;
+        pos.y = 128 * scale;
         rt.position = pos;
 
         for(int x = 0; x <= displayText.Length; x++)
@@ -59,12 +64,15 @@ public class textBox : MonoBehaviour {
                 startTime = Time.time;
         while (Time.time - startTime < showDialogueBoxTime)
         {
-            pos.y = (-256 * (Time.time - startTime) / showDialogueBoxTime) * scale;
+            pos.y = (128 - 128 * (Time.time - startTime) / showDialogueBoxTime) * scale;
             rt.position = pos;
             yield return null;
         }
 
-        pos.y = -256 * scale;
+        pos.y = 0;
         rt.position = pos;
+
+        player.busy = false;
+        Debug.Log("End Dialogue");
     }
 }
