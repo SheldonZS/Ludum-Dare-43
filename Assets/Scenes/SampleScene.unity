@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.58280647, g: 0.609, b: 0.53696775, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -201,7 +201,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 73d6df6c3a34e73408126469014b9d0b, type: 3}
     m_FontSize: 47
     m_FontStyle: 0
     m_BestFit: 0
@@ -250,7 +250,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469964575}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -346,7 +346,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d8b5f18b395550643b0fa03f2d88568f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8958eca345655c14c82543781310b574, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -376,11 +376,12 @@ MonoBehaviour:
   defaultInventory:
   - {fileID: 11400000, guid: 7cd69619d74869e418046b1f83bc8d88, type: 2}
   - {fileID: 11400000, guid: 9bda75bc10247fe43bb6bfc474893e2b, type: 2}
-  - {fileID: 11400000, guid: 058042530beec8644911aa0ee4f47766, type: 2}
+  - {fileID: 11400000, guid: cac1d2594de9d6a40b1f805f8f5b862b, type: 2}
   recipeBook: {fileID: 11400000, guid: 1210f946af7517346a6720c8c04f11a1, type: 2}
   timeToDisplayBook: 0.5
   journalImage: {fileID: 21300000, guid: 6d56f8a90d15ee44d8e4bce3d034ac5d, type: 3}
-  brochureImage: {fileID: 0}
+  brochureImage: {fileID: 21300000, guid: 208a8c1b73fee954ea65d2565215f381, type: 3}
+  dimmedOrb: {fileID: 11400000, guid: cac1d2594de9d6a40b1f805f8f5b862b, type: 2}
 --- !u!1 &294590369
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,8 +536,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 613031951}
-  - {fileID: 1490337640}
   - {fileID: 132766542}
+  - {fileID: 1490337640}
   - {fileID: 204028463}
   - {fileID: 294590370}
   m_Father: {fileID: 0}
@@ -708,6 +709,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01b955792ce9dcc49a8fceccec4e5932, type: 2}
   - {fileID: 11400000, guid: 6aa2c7f2bbb1b7e45ba10cc6fcbb0252, type: 2}
   - {fileID: 11400000, guid: 0537dffad1b6e234c8279657d78351c5, type: 2}
+  darkenedDocentRoom: {fileID: 21300000, guid: 6f623a034f7fd8b49ab1fd35df8500a2, type: 3}
 --- !u!1 &697075727
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,7 +805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 511, y: 84}
+  m_AnchoredPosition: {x: 724.53, y: 84.06}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238246354
@@ -944,7 +946,7 @@ RectTransform:
   m_Children:
   - {fileID: 87506523}
   m_Father: {fileID: 469964575}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -983,7 +985,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 788701e931e5c6b459cb77226393f0b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 05c4c16e20e192b40aba8d06a4435844, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

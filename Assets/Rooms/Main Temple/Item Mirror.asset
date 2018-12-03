@@ -14,16 +14,22 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 40d04af0930369140914d2ee22eb0aaa, type: 3}
   position: {x: 700, y: 522, z: 0}
   size: {x: 75, y: 75}
-  moveTo: {x: 525, y: 170, z: 0}
+  moveTo: {x: 600, y: 170, z: 0}
   facingRight: 1
   handAnimation: 1
   handText: I can't reach it.
   handActions: []
-  correctItem: {fileID: 0}
+  correctItem: {fileID: 11400000, guid: c379220a1e976f64b9456b184adcafb1, type: 2}
   consumeItem: 0
   correctAnimation: 0
   correctText: The sandals helped me reach this mirror!
-  correctActions: []
+  correctActions:
+  - action: 3
+    item: {fileID: 11400000, guid: 5bf353e7697f8424197761ec6f5fea96, type: 2}
+    clickable: {fileID: 0}
+  - action: 1
+    item: {fileID: 0}
+    clickable: {fileID: 0}
   wrongAnimation: 1
   overrideWrongText: 1
   wrongOverrideText: This won't help me get up there.

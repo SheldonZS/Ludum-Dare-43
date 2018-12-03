@@ -14,21 +14,21 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e7b5973d12df4a84db3967680897b45b, type: 3}
   position: {x: 200, y: 570, z: 0}
   size: {x: 50, y: 50}
-  moveTo: {x: 500, y: 90, z: 0}
+  moveTo: {x: 325, y: 90, z: 0}
   facingRight: 0
   handAnimation: 1
   handText: It's too far up!
   handActions: []
   correctItem: {fileID: 11400000, guid: c379220a1e976f64b9456b184adcafb1, type: 2}
   consumeItem: 0
-  correctAnimation: 1
+  correctAnimation: 0
   correctText: Using the sandals to float, I got a familiar-looking piece.
   correctActions:
-  - action: 1
-    item: {fileID: 0}
-    clickable: {fileID: 0}
   - action: 3
     item: {fileID: 11400000, guid: 2cb161d8efd28354da17d54a6d9a28f5, type: 2}
+    clickable: {fileID: 0}
+  - action: 1
+    item: {fileID: 0}
     clickable: {fileID: 0}
   wrongAnimation: 0
   overrideWrongText: 1

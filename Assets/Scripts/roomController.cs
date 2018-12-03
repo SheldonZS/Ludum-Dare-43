@@ -8,6 +8,9 @@ public class roomController : MonoBehaviour {
 
     public float fadeTime;
     public roomSO[] initialRooms;
+
+    [Header("Special Rooms")]
+    public Sprite darkenedDocentRoom;
     
     private room[] rooms;
 
@@ -122,7 +125,24 @@ public class roomController : MonoBehaviour {
         else
         {
             player.GetComponent<SkeletonGraphic>().enabled = true;
+
             //position player in room
+            if (roomNum == 3)
+            {
+                player.GetComponent<RectTransform>().localPosition = new Vector3(190, 115);
+                player.GetComponent<SkeletonGraphic>().Skeleton.FlipX = true;
+            }
+
+            if (roomNum == 0)
+            {
+                Debug.Log("coming from room: " + currentRoom);
+                if (currentRoom == 3)
+                {
+                    player.GetComponent<RectTransform>().localPosition = new Vector3(1170, 150);
+                    player.GetComponent<SkeletonGraphic>().Skeleton.FlipX = false;
+                }
+            }
+
         }
 
         foreach (clickable o in rooms[roomNum].objects)
@@ -138,9 +158,86 @@ public class roomController : MonoBehaviour {
             yield return null;
         }
 
+        currentRoom = roomNum;
+
         Fader.enabled = false;
         player.GetComponent<playerController>().busy = false;
     }
+
+    public IEnumerator darkDocentRoom()
+    {
+        player.GetComponent<playerController>().busy = true;
+
+        //fade out
+        float startTime = Time.time;
+        Color fadeColor = Color.black;
+        Fader.enabled = true;
+
+        while ((Time.time - startTime) < fadeTime)
+        {
+            fadeColor.a = (Time.time - startTime) / fadeTime;
+            Fader.color = fadeColor;
+            yield return null;
+        }
+
+        Fader.color = Color.black;
+
+        //load darkened room
+        GameObject fullscreenImage = GameObject.Find("Fullscreen Image");
+        Vector3 startingPos = fullscreenImage.GetComponent<RectTransform>().position;
+        fullscreenImage.GetComponent<RectTransform>().position = Fader.GetComponent<RectTransform>().position;
+        fullscreenImage.GetComponent<Image>().overrideSprite = darkenedDocentRoom;
+
+        //fade in
+        startTime = Time.time;
+        fadeColor = Color.black;
+
+        while ((Time.time - startTime) < fadeTime)
+        {
+            fadeColor.a = 1 - (Time.time - startTime) / fadeTime;
+            Fader.color = fadeColor;
+            yield return null;
+        }
+
+        while(Input.GetMouseButtonDown(0) == false)
+        {
+            yield return null;
+        }
+
+        yield return GameObject.Find("TextBox").GetComponent<textBox>().animateText("It's too dark to see...");
+
+        startTime = Time.time;
+        fadeColor = Color.black;
+        Fader.enabled = true;
+
+        while ((Time.time - startTime) < fadeTime)
+        {
+            fadeColor.a = (Time.time - startTime) / fadeTime;
+            Fader.color = fadeColor;
+            yield return null;
+        }
+
+        Fader.color = Color.black;
+
+        //hide fullscreenimage
+        fullscreenImage.GetComponent<RectTransform>().position = startingPos;
+
+        //fade in
+        startTime = Time.time;
+        fadeColor = Color.black;
+
+        while ((Time.time - startTime) < fadeTime)
+        {
+            fadeColor.a = 1 - (Time.time - startTime) / fadeTime;
+            Fader.color = fadeColor;
+            yield return null;
+        }
+
+        Fader.enabled = false;
+
+        player.GetComponent<playerController>().busy = false;
+    }
+
 }
 
 public struct room

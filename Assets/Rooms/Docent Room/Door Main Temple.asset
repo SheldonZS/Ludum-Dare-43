@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
-  m_Name: Door Docent
+  m_Name: Door Main Temple
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 1136, y: 304, z: 0}
-  size: {x: 137, y: 223}
-  moveTo: {x: 1125, y: 170, z: 0}
-  facingRight: 1
+  position: {x: 100, y: 250, z: 0}
+  size: {x: 100, y: 300}
+  moveTo: {x: 190, y: 115, z: 0}
+  facingRight: 0
   handAnimation: 0
   handText: 
   handActions:
@@ -26,7 +26,10 @@ MonoBehaviour:
   consumeItem: 0
   correctAnimation: 0
   correctText: 
-  correctActions: []
+  correctActions:
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}
   wrongAnimation: 0
   overrideWrongText: 0
   wrongOverrideText: 

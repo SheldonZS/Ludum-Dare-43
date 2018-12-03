@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour {
 
@@ -145,7 +146,47 @@ public class playerController : MonoBehaviour {
                 case action.addItemToInventory:
                     im.addItem(a.item);
                     if (item.name == "Sandal")
-                        SFX.PlayOneShot((AudioClip) Resources.Load("SFX/flying"));
+                    {
+                        SFX.PlayOneShot((AudioClip)Resources.Load("SFX/flying"));
+                        spine.AnimationState.SetAnimation(0, "fly", true);
+
+                        float startTime = Time.time;
+
+                        Vector3 pos = rt.localPosition;
+
+                        float startY = pos.y;
+                        float targetY = 250;
+
+                        if (target.name == "Item Anansi Piece")
+                            targetY = 300;
+                        if (target.name == "Item Mirror")
+                            targetY = 250;
+
+                        while (Time.time - startTime < 1f)
+                        {
+                            pos.y = startY + (Time.time - startTime) * (targetY - startY);
+                            rt.localPosition = pos;
+                            yield return null;
+                        }
+
+                        spine.AnimationState.SetAnimation(0, "interacthighTWEEN", false);
+                        spine.AnimationState.AddAnimation(0, "fly", true, 0.5f);
+                        yield return new WaitForSeconds(0.5f);
+
+                        targetController.GetComponent<Image>().enabled = false;
+                        SFX.PlayOneShot((AudioClip)Resources.Load("SFX/pickuptune"));
+
+                        startTime = Time.time;
+                        while (Time.time - startTime < 1f)
+                        {
+                            pos.y = targetY - (Time.time - startTime) * (targetY - startY);
+                            rt.localPosition = pos;
+                            yield return null;
+                        }
+
+                        spine.AnimationState.AddAnimation(0, "idle", true, 0.05f);
+
+                    }
                     else SFX.PlayOneShot((AudioClip)Resources.Load("SFX/pickuptune"));
                     break;
                 case action.codeAction:
@@ -163,6 +204,19 @@ public class playerController : MonoBehaviour {
             roomController.moveToRoom("Room Desk Closeup");
 
         if (target.name == "Door Back Arrow")
+            roomController.moveToRoom("Room Main Temple");
+
+        if (target.name == "Door Docent")
+        {
+            if (im.haveDimmedOrb())
+                roomController.moveToRoom("Room Docent Room");
+            else
+            {
+                StartCoroutine(roomController.darkDocentRoom());
+            }
+        }
+
+        if (target.name == "Door Main Temple")
             roomController.moveToRoom("Room Main Temple");
     }
 }

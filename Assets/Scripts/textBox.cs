@@ -28,7 +28,7 @@ public class textBox : MonoBehaviour {
         StartCoroutine(animateText(displayText));
     }
 
-    private IEnumerator animateText(string displayText)
+    public IEnumerator animateText(string displayText)
     {
         player.busy = true;
         Debug.Log("Player Busy");

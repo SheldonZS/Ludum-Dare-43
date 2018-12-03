@@ -19,6 +19,9 @@ public class InventoryManager : MonoBehaviour {
     public Sprite journalImage;
     public Sprite brochureImage;
 
+    [Header("Special items")]
+    public item dimmedOrb;
+
     private InventoryItem[] inventorySlots;
     private List<item> inventory;
     private textBox textBox;
@@ -234,5 +237,10 @@ public class InventoryManager : MonoBehaviour {
         rt.position = pos;
 
         player.busy = false;
+    }
+
+    public bool haveDimmedOrb()
+    {
+        return inventory.Contains(dimmedOrb);
     }
 }

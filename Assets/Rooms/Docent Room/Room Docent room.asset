@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
-  m_Name: Room Docent room
+  m_Name: Room Docent Room
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 0}
-  playerVisible: 0
-  clickables: []
+  roomImage: {fileID: 21300000, guid: 981620ef23b992943b0ed477853facde, type: 3}
+  playerVisible: 1
+  clickables:
+  - {fileID: 11400000, guid: 616b2107986a6284cb70c94e8660e185, type: 2}
