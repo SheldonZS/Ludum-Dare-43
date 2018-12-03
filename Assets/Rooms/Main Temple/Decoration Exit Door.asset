@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
+  m_Name: Decoration Exit Door
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  position: {x: 107, y: 253, z: 0}
+  size: {x: 100, y: 340}
+  moveTo: {x: 213, y: 110, z: 0}
+  facingRight: 0
+  handAnimation: 2
+  handText: I need to know the code to open the door.
+  handActions: []
+  correctItem: {fileID: 0}
+  consumeItem: 0
+  correctAnimation: 0
+  correctText: 
+  correctActions: []
+  wrongAnimation: 2
+  overrideWrongText: 1
+  wrongOverrideText: This won't help get the door open.
+  wrongActions: []

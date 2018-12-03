@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour {
     private textBox textBox;
     private RectTransform rt;
     private roomController roomController;
+    private AudioSource SFX;
 
     private GameObject clickable;
     private Transform objectsLayer;
@@ -30,6 +31,7 @@ public class playerController : MonoBehaviour {
         textBox = GameObject.Find("TextBox").GetComponent<textBox>();
         spine = GetComponent<SkeletonGraphic>();
         roomController = GetComponentInParent<roomController>();
+        SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
 
         clickable = Resources.Load("Clickable") as GameObject;
         objectsLayer = GameObject.Find("Objects").transform;
@@ -46,30 +48,35 @@ public class playerController : MonoBehaviour {
         busy = true;
 
         clickable target = targetController.clickable;
-        Vector3 pos = rt.localPosition;
 
-        //move to target
-        Vector3 moveDirection = (target.moveTo - pos).normalized;
-
-        currentAnimation = "idle";
-
-        while (Vector3.Distance(target.moveTo, pos) > walkSpeed)
+        if (spine.enabled == true)
         {
-            if (currentAnimation == "idle")
+
+            Vector3 pos = rt.localPosition;
+
+            //move to target
+            Vector3 moveDirection = (target.moveTo - pos).normalized;
+
+            currentAnimation = "idle";
+
+            while (Vector3.Distance(target.moveTo, pos) > walkSpeed)
             {
-                spine.AnimationState.SetAnimation(0, "walk", true);
-                currentAnimation = "walk";
-                spine.Skeleton.FlipX = moveDirection.x > 0;
+                if (currentAnimation == "idle")
+                {
+                    spine.AnimationState.SetAnimation(0, "walk", true);
+                    currentAnimation = "walk";
+                    spine.Skeleton.FlipX = moveDirection.x > 0;
+                }
+
+                pos += moveDirection * walkSpeed;
+                rt.localPosition = pos;
+                yield return null;
             }
 
-            pos += moveDirection * walkSpeed;
-            rt.localPosition = pos;
-            yield return null;
+            rt.localPosition = target.moveTo;
+            spine.Skeleton.FlipX = target.facingRight;
+
         }
-
-        rt.localPosition = target.moveTo;
-        spine.Skeleton.FlipX = target.facingRight;
-
         characterAnimation animation;
         clickableAction[] actions;
         string text;
@@ -94,30 +101,33 @@ public class playerController : MonoBehaviour {
             actions = target.wrongActions;
             if (target.overrideWrongText)
                 text = target.wrongOverrideText;
-            else text = item.useWrongText[Random.Range(0,item.useWrongText.Length)];
+            else text = item.useWrongText[Random.Range(0, item.useWrongText.Length)];
         }
 
-        string nextAnimation;
-
-        switch(animation)
+        if (spine.enabled == true)
         {
-            case characterAnimation.reachHigh: nextAnimation = "interacthighTWEEN"; break;
-            case characterAnimation.reachMid: nextAnimation = "interactmidTWEEN"; break;
-            case characterAnimation.reachLow: nextAnimation = "interactlowTWEEN"; break;
-            default: nextAnimation = "idle"; break;
+            string nextAnimation;
+
+            switch (animation)
+            {
+                case characterAnimation.reachHigh: nextAnimation = "interacthighTWEEN"; break;
+                case characterAnimation.reachMid: nextAnimation = "interactmidTWEEN"; break;
+                case characterAnimation.reachLow: nextAnimation = "interactlowTWEEN"; break;
+                default: nextAnimation = "idle"; break;
+            }
+
+            if (nextAnimation != "idle")
+            {
+                spine.AnimationState.SetAnimation(0, nextAnimation, false);
+                spine.AnimationState.AddAnimation(0, "idle", true, .5f);
+                yield return new WaitForSeconds(.5f);
+            }
+            else if (currentAnimation != "idle")
+                spine.AnimationState.AddAnimation(0, "idle", true, 0f);
+
+
+            currentAnimation = "idle";
         }
-
-        if (nextAnimation != "idle")
-        {
-            spine.AnimationState.SetAnimation(0, nextAnimation, false);
-            spine.AnimationState.AddAnimation(0, "idle", true, .5f);
-            yield return new WaitForSeconds(.5f);
-        }
-        else if(currentAnimation != "idle")
-            spine.AnimationState.AddAnimation(0, "idle", true, 0f);
-
-
-        currentAnimation = "idle";
 
         busy = false;
 
@@ -134,6 +144,9 @@ public class playerController : MonoBehaviour {
                     break;
                 case action.addItemToInventory:
                     im.addItem(a.item);
+                    if (item.name == "Sandal")
+                        SFX.PlayOneShot((AudioClip) Resources.Load("SFX/flying"));
+                    else SFX.PlayOneShot((AudioClip)Resources.Load("SFX/pickuptune"));
                     break;
                 case action.codeAction:
                     SpecialAction(target, item);
@@ -145,6 +158,11 @@ public class playerController : MonoBehaviour {
 
     private void SpecialAction(clickable target, item item)
     {
+        Debug.Log(target.name);
+        if (target.name == "Door Desk")
+            roomController.moveToRoom("Room Desk Closeup");
 
+        if (target.name == "Door Back Arrow")
+            roomController.moveToRoom("Room Main Temple");
     }
 }

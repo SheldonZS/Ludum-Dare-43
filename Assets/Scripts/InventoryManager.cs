@@ -14,11 +14,17 @@ public class InventoryManager : MonoBehaviour {
     [Header("Recipe Book")]
     public recipeSO recipeBook;
 
+    [Header("Full Screen Displays")]
+    public float timeToDisplayBook;
+    public Sprite journalImage;
+    public Sprite brochureImage;
+
     private InventoryItem[] inventorySlots;
     private List<item> inventory;
     private textBox textBox;
     private AudioSource SFX;
     private playerController player;
+    private Image fullScreenImage;
 
     private int selectedItem;
     private int currentPage;
@@ -34,6 +40,7 @@ public class InventoryManager : MonoBehaviour {
 
         SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
         player = GameObject.Find("Protag").GetComponent<playerController>();
+        fullScreenImage = GameObject.Find("Fullscreen Image").GetComponent<Image>();
 
         Vector3 localPos = Vector3.zero;
         localPos.y = 64;
@@ -75,7 +82,13 @@ public class InventoryManager : MonoBehaviour {
 
             if (currentItem == targetItem)
             {
-                textBox.displayText(currentItem.lookDescription[Random.Range(0, currentItem.lookDescription.Length)]);
+                if(currentItem.name == "Journal" || currentItem.name == "Brochure")
+                {
+                    SFX.PlayOneShot((AudioClip)Resources.Load("SFX/page turn"));
+                    StartCoroutine(showFullscreen(currentItem.name));
+                }
+                else
+                    textBox.displayText(currentItem.lookDescription[Random.Range(0, currentItem.lookDescription.Length)]);
             }
 
             bool combine = false;
@@ -114,7 +127,7 @@ public class InventoryManager : MonoBehaviour {
 
             if (combine == true)
             {
-                SFX.PlayOneShot((AudioClip) Resources.Load("SFX/fuse"));
+                SFX.PlayOneShot((AudioClip) Resources.Load("SFX/combinetune"));
             }
             else
             {
@@ -174,5 +187,52 @@ public class InventoryManager : MonoBehaviour {
 
             currentPage = page;
         }
+    }
+
+    IEnumerator showFullscreen(string item)
+    {
+        player.busy = true;
+        float scale = GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor;
+
+        if (item == "Journal")
+            fullScreenImage.overrideSprite = journalImage;
+        if (item == "Brochure")
+            fullScreenImage.overrideSprite = brochureImage;
+
+        float startTime = Time.time;
+        RectTransform rt = fullScreenImage.GetComponent<RectTransform>();
+
+        Vector3 pos = rt.position;
+
+        while (Time.time - startTime < timeToDisplayBook && Input.GetMouseButtonDown(0) == false)
+        {
+            pos.y = (-544 + 672 * (Time.time - startTime) / timeToDisplayBook) * scale;
+            rt.position = pos;
+            yield return null;
+        }
+
+        pos.y = 128 * scale;
+        rt.position = pos;
+        yield return null;
+
+        while (Input.GetMouseButtonDown(0) == false)
+        {
+            yield return null;
+        }
+
+        startTime = Time.time;
+        yield return null;
+
+        while (Time.time - startTime < timeToDisplayBook && Input.GetMouseButtonDown(0) == false)
+        {
+            pos.y = (128 - 672 * (Time.time - startTime) / timeToDisplayBook) * scale;
+            rt.position = pos;
+            yield return null;
+        }
+
+        pos.y = -544 * scale;
+        rt.position = pos;
+
+        player.busy = false;
     }
 }

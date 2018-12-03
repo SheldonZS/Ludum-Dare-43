@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Anansi Piece
   m_EditorClassIdentifier: 
   itemName: Anansi Piece
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e7b5973d12df4a84db3967680897b45b, type: 3}
   lookDescription:
   - This carving reminds me of spiders.
   useWrongText:

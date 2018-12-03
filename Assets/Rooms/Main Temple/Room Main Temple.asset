@@ -14,7 +14,18 @@ MonoBehaviour:
   roomImage: {fileID: 21300000, guid: ed69c60c98b77d049ba49052ea75b5f0, type: 3}
   playerVisible: 1
   clickables:
-  - {fileID: 11400000, guid: 4d2d74b3e5a8b0a489f273cb8b9d9dec, type: 2}
+  - {fileID: 11400000, guid: fb262b9ac44273b4295c4df1aa4b5492, type: 2}
+  - {fileID: 11400000, guid: 2aac17205fc4afc488ac1a06d5e07858, type: 2}
+  - {fileID: 11400000, guid: 99a0c9bc375b92747a30f717cb87e86d, type: 2}
+  - {fileID: 11400000, guid: 63c5e4c204b53904aa85c3db988b0e5f, type: 2}
+  - {fileID: 11400000, guid: 4bdc5248343b74248abb3ac9baa47374, type: 2}
+  - {fileID: 11400000, guid: 9d06d00e73e603843a8f3c6e8aad1420, type: 2}
+  - {fileID: 11400000, guid: 248b43022b0e0a04194a87323510f342, type: 2}
+  - {fileID: 11400000, guid: 77f5f2d30949b3d419b2febddc77e184, type: 2}
+  - {fileID: 11400000, guid: ecbfa10ddcc8a8742878389c7038ffaa, type: 2}
+  - {fileID: 11400000, guid: b1c1b6ecda52ac04b8182397bdaf60c9, type: 2}
+  - {fileID: 11400000, guid: cedd02206ada0a346a06d392ebdcad63, type: 2}
   - {fileID: 11400000, guid: 71d4071fa4fa0314787998fb94c40c8e, type: 2}
   - {fileID: 11400000, guid: c21e01d9701096347bc2ea2d79947a2c, type: 2}
-  - {fileID: 11400000, guid: cedd02206ada0a346a06d392ebdcad63, type: 2}
+  - {fileID: 11400000, guid: 4d2d74b3e5a8b0a489f273cb8b9d9dec, type: 2}
+  - {fileID: 11400000, guid: d0bf7c1d7bc7c8b47922e133ba9a18df, type: 2}

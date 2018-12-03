@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Gummy Piece
   m_EditorClassIdentifier: 
   itemName: Gummy Piece
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: b217e339547956148ad1c43f730e3706, type: 3}
   lookDescription:
   - This reminds me of gummy bears?
   - Good thing I can't see that care bear stare.

@@ -17,7 +17,8 @@ MonoBehaviour:
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: 
+  handText: I used to want to volunteer here and wear one of these badges. Now I want
+    to get out ASAP.
   handActions: []
   correctItem: {fileID: 0}
   consumeItem: 0
@@ -25,5 +26,6 @@ MonoBehaviour:
   correctText: 
   correctActions: []
   wrongAnimation: 0
+  overrideWrongText: 0
   wrongOverrideText: 
   wrongActions: []

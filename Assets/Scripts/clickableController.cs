@@ -17,7 +17,6 @@ public class clickableController : MonoBehaviour {
 
     public void onClick()
     {
-        Debug.Log("Clicked on " + clickable.name);
         if(!player.busy)
             player.clickedObject(this);
     }
@@ -30,7 +29,10 @@ public class clickableController : MonoBehaviour {
         clickable = c;
 
         RectTransform rt = GetComponent<RectTransform>();
-        GetComponent<Image>().overrideSprite = c.sprite;
+
+        if (c.sprite == null)
+            GetComponent<Image>().color = Color.clear;
+        else GetComponent<Image>().overrideSprite = c.sprite;
         rt.localPosition = c.position;
         rt.sizeDelta = c.size;
     }
