@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
   m_Name: Room Desk Closeup
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 21300000, guid: b2119a76bc41c8d42b40d9dde0022e6f, type: 3}
+  roomImage: {fileID: 21300000, guid: 8c9aee29bf694ef46b2916e83ac17ce2, type: 3}
   playerVisible: 0
   clickables:
-  - {fileID: 11400000, guid: ffd2590e47500e34dbc04c877583cb31, type: 2}
+  - {fileID: 11400000, guid: ef693ba554f1e6944b7769ec61b3b000, type: 2}
   - {fileID: 11400000, guid: 03f2f49b1a3c8a24a8ea2217593e9190, type: 2}
   - {fileID: 11400000, guid: c3e4d102e75b34a49b406e5dbf790310, type: 2}
   - {fileID: 11400000, guid: 1fd86107a3e16c643954782e215878bd, type: 2}

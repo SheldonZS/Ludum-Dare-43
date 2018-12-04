@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
   m_Name: Item Gummy Piece
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b217e339547956148ad1c43f730e3706, type: 3}
-  position: {x: 226, y: 469, z: 0}
-  size: {x: 100, y: 100}
+  sprite: {fileID: 21300000, guid: d7260e0297f2612429b8e331fde6e39c, type: 3}
+  position: {x: 226, y: 533, z: 0}
+  size: {x: 75, y: 75}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0

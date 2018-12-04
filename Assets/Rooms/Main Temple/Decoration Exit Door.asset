@@ -17,7 +17,7 @@ MonoBehaviour:
   moveTo: {x: 213, y: 110, z: 0}
   facingRight: 0
   handAnimation: 2
-  handText: I need to know the code to open the door.
+  handText: No matter how hard I pound, no one is coming.
   handActions: []
   correctItem: {fileID: 0}
   consumeItem: 0

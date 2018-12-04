@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Spine.Unity;
+using UnityEngine.SceneManagement;
 
 public class roomController : MonoBehaviour {
 
@@ -20,6 +21,7 @@ public class roomController : MonoBehaviour {
     private GameObject clickablePrefab;
     private AudioSource BGM;
     private Image Fader;
+    private altarController altarWheel;
 
     private int currentRoom;
 
@@ -34,6 +36,7 @@ public class roomController : MonoBehaviour {
         clickablePrefab = (GameObject) Resources.Load("Clickable");
         BGM = GameObject.Find("BGM 1").GetComponent<AudioSource>();
         Fader = GameObject.Find("Fader").GetComponent<Image>();
+        altarWheel = GameObject.Find("Wheel").GetComponent<altarController>();
 
         for (int x = 0; x < rooms.Length; x++)
         {
@@ -77,7 +80,7 @@ public class roomController : MonoBehaviour {
         rooms[currentRoom].objects.Remove(removeMe.GetComponent<clickableController>().clickable);
         Destroy(removeMe);
 
-        Debug.Log("Items in room: " + rooms[currentRoom].objects.Count);
+        //Debug.Log("Items in room: " + rooms[currentRoom].objects.Count);
     }
 
     public void moveToRoom (string newRoom)
@@ -89,8 +92,10 @@ public class roomController : MonoBehaviour {
                 roomNum = x;
         }
 
+        if (newRoom == "Ending")
+            roomNum = 666;
         if (roomNum == -1)
-            Debug.Log("Room Transition Failed");
+            Debug.Log("Room Transition Failed, attempted name: " + newRoom);
         else
             StartCoroutine(moveToRoom(roomNum));
     }
@@ -119,6 +124,12 @@ public class roomController : MonoBehaviour {
             DestroyImmediate(objectsLayer.GetChild(0).gameObject);
         }
 
+        if (roomNum == 666)
+        {
+            SceneManager.LoadScene("ending");
+            yield return 0;
+        }
+
         background.overrideSprite = rooms[roomNum].roomImage;
         if (rooms[roomNum].playerVisible == false)
             player.GetComponent<SkeletonGraphic>().enabled = false;
@@ -127,26 +138,33 @@ public class roomController : MonoBehaviour {
             player.GetComponent<SkeletonGraphic>().enabled = true;
 
             //position player in room
-            if (roomNum == 3)
-            {
-                player.GetComponent<RectTransform>().localPosition = new Vector3(190, 115);
-                player.GetComponent<SkeletonGraphic>().Skeleton.FlipX = true;
-            }
-
             if (roomNum == 0)
             {
-                Debug.Log("coming from room: " + currentRoom);
-                if (currentRoom == 3)
+                if (currentRoom == 4)
                 {
                     player.GetComponent<RectTransform>().localPosition = new Vector3(1170, 150);
                     player.GetComponent<SkeletonGraphic>().Skeleton.FlipX = false;
                 }
             }
 
+            if (roomNum == 4)
+            {
+                player.GetComponent<RectTransform>().localPosition = new Vector3(190, 115);
+                player.GetComponent<SkeletonGraphic>().Skeleton.FlipX = true;
+            }
+
+            //display wheel in altar room
         }
 
         foreach (clickable o in rooms[roomNum].objects)
             spawnObject(o);
+
+        if (roomNum == 2)
+            altarWheel.displayWheel();
+
+        //hide wheel when leaving altar
+        if (currentRoom == 2)
+            altarWheel.hideWheel();
 
         startTime = Time.time;
         fadeColor = Color.black;

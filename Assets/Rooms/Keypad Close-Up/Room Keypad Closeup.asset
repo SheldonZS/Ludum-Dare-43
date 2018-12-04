@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
+  m_Name: Room Keypad Closeup
+  m_EditorClassIdentifier: 
+  roomImage: {fileID: 21300000, guid: c83ccbc766c50e14095396166769f327, type: 3}
+  playerVisible: 0
+  clickables:
+  - {fileID: 11400000, guid: dc34ab6b09da8744697c7e9acf7cae64, type: 2}
+  - {fileID: 11400000, guid: 27103a766d2268c47a6d413a92594452, type: 2}
+  - {fileID: 11400000, guid: 190599c3e5b3a464db60685f3f06744b, type: 2}
+  - {fileID: 11400000, guid: da1d7a37860541d4a9303b6a8c729d9b, type: 2}
+  - {fileID: 11400000, guid: 0f585bbe0c690cd43af0e1734b894baf, type: 2}
+  - {fileID: 11400000, guid: e5ee7538ac7f02843bc5a945e25dc979, type: 2}
+  - {fileID: 11400000, guid: 1252180d51a0c15449fbaea795da6222, type: 2}
+  - {fileID: 11400000, guid: 8342a64bcdc5d2e43a6a5af14c585f19, type: 2}
+  - {fileID: 11400000, guid: 39e01b5bf8c43c84d9a104f8fc5990c8, type: 2}
+  - {fileID: 11400000, guid: 84f98ec7b73cf04428cde2acd0605e40, type: 2}
+  - {fileID: 11400000, guid: 3881f7919c1796c40ab990810a3e33e0, type: 2}
+  - {fileID: 11400000, guid: 2a2975860664afd4b94d162e10f4dabb, type: 2}
+  - {fileID: 11400000, guid: 500c830d47d1bf048a6c42f62f5aab23, type: 2}

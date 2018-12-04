@@ -17,7 +17,7 @@ MonoBehaviour:
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: A brochure on the temple
+  handText: This brochure was so cheaply made.
   handActions:
   - action: 1
     item: {fileID: 0}

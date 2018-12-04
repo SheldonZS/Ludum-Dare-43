@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Baldr Piece
   m_EditorClassIdentifier: 
   itemName: Baldr Piece
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4d3ca166e441bb34fbabc01151e6fc68, type: 3}
   lookDescription:
   - This carving reminds me of Baldr.
   useWrongText:

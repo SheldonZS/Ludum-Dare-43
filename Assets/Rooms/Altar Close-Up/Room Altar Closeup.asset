@@ -11,6 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
   m_Name: Room Altar Closeup
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 0}
+  roomImage: {fileID: 21300000, guid: e8af7356e9445884eb91c396099f0ddb, type: 3}
   playerVisible: 0
-  clickables: []
+  clickables:
+  - {fileID: 11400000, guid: 74a296d240e3c6a4586cb01a8904cd03, type: 2}
+  - {fileID: 11400000, guid: 51b69a51c679aa54bbb714d507c08a0e, type: 2}
+  - {fileID: 11400000, guid: b98a30bd1dbfb1d40a1967d6c9395342, type: 2}
+  - {fileID: 11400000, guid: b7b96578dc78b50448279aac29055746, type: 2}
+  - {fileID: 11400000, guid: 3d88cff29e2455b41b1479eaa23c06fa, type: 2}
+  - {fileID: 11400000, guid: f16a336ed960b1244b79af7c084b0c85, type: 2}
+  - {fileID: 11400000, guid: ce802d801802f7244a101534eb4649bc, type: 2}

@@ -31,7 +31,7 @@ MonoBehaviour:
     item: {fileID: 0}
     clickable: {fileID: 0}
   wrongAnimation: 0
-  overrideWrongText: 0
+  overrideWrongText: 1
   wrongOverrideText: 
   wrongActions:
   - action: 4

@@ -28,7 +28,7 @@ MonoBehaviour:
   correctText: 
   correctActions: []
   wrongAnimation: 0
-  overrideWrongText: 0
+  overrideWrongText: 1
   wrongOverrideText: 
   wrongActions:
   - action: 4

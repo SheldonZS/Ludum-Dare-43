@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
   m_Name: Item Anansi Piece
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: e7b5973d12df4a84db3967680897b45b, type: 3}
-  position: {x: 200, y: 570, z: 0}
-  size: {x: 50, y: 50}
+  sprite: {fileID: 21300000, guid: 6930ff5d881b86b40832b373e34c4aff, type: 3}
+  position: {x: 201, y: 551, z: 0}
+  size: {x: 64, y: 48}
   moveTo: {x: 325, y: 90, z: 0}
   facingRight: 0
   handAnimation: 1

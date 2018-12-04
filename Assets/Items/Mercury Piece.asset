@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Mercury Piece
   m_EditorClassIdentifier: 
   itemName: Mercury Piece
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 76d2c2162af582f4d89239f7018b2fea, type: 3}
   lookDescription:
   - This carving reminds me of Mercury. The god, not the planet.
   useWrongText:

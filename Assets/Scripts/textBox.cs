@@ -31,7 +31,7 @@ public class textBox : MonoBehaviour {
     public IEnumerator animateText(string displayText)
     {
         player.busy = true;
-        Debug.Log("Player Busy");
+        //Debug.Log("Player Busy");
 
         float startTime = Time.time;
         Vector3 pos = rt.position;
@@ -73,6 +73,6 @@ public class textBox : MonoBehaviour {
         rt.position = pos;
 
         player.busy = false;
-        Debug.Log("End Dialogue");
+        //Debug.Log("End Dialogue");
     }
 }

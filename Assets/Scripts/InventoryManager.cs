@@ -152,7 +152,6 @@ public class InventoryManager : MonoBehaviour {
         if (currentItem == item)
             selectedItem = 0;
         inventory.Remove(item);
-        selectedItem = inventory.FindIndex(i => i == item);
         refreshInventory(currentPage);
     }
 

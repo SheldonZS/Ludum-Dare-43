@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
+  m_Name: Item Belt
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 0160a533e6b947740a4e85c815221b36, type: 3}
+  position: {x: 620, y: 125, z: 0}
+  size: {x: 100, y: 100}
+  moveTo: {x: 0, y: 0, z: 0}
+  facingRight: 0
+  handAnimation: 0
+  handText: Just touching this belt makes me feel strong.
+  handActions:
+  - action: 1
+    item: {fileID: 0}
+    clickable: {fileID: 0}
+  - action: 3
+    item: {fileID: 11400000, guid: 52f2de97bf685d64d88421e710aac558, type: 2}
+    clickable: {fileID: 0}
+  correctItem: {fileID: 0}
+  consumeItem: 0
+  correctAnimation: 0
+  correctText: 
+  correctActions: []
+  wrongAnimation: 0
+  overrideWrongText: 1
+  wrongOverrideText: A sturdy belt
+  wrongActions:
+  - action: 1
+    item: {fileID: 0}
+    clickable: {fileID: 0}
+  - action: 3
+    item: {fileID: 11400000, guid: 52f2de97bf685d64d88421e710aac558, type: 2}
+    clickable: {fileID: 0}

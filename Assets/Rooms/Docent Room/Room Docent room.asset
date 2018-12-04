@@ -11,7 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
   m_Name: Room Docent Room
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 21300000, guid: 981620ef23b992943b0ed477853facde, type: 3}
+  roomImage: {fileID: 21300000, guid: c1ba8d509f8d56f42aa87652d07ce7f2, type: 3}
   playerVisible: 1
   clickables:
   - {fileID: 11400000, guid: 616b2107986a6284cb70c94e8660e185, type: 2}
+  - {fileID: 11400000, guid: dbaf66c14e4490948850f8af80fac014, type: 2}
+  - {fileID: 11400000, guid: 58be4bb6c710a8f4697b805dbd9ffe90, type: 2}
+  - {fileID: 11400000, guid: 45617a11ba31b4842b5282b075558d49, type: 2}
+  - {fileID: 11400000, guid: 198be8cd9296df1419e525cddce892e3, type: 2}
+  - {fileID: 11400000, guid: c338bf210b7889f4f92f17c9da9f7de6, type: 2}
+  - {fileID: 11400000, guid: 6bcc1a3259e3ef64a8af6fefbeacd743, type: 2}
+  - {fileID: 11400000, guid: 1f6d2e73ef8473e4b98218bdc49e8581, type: 2}
+  - {fileID: 11400000, guid: 29952e6ed7198a8489f8607f70f7cc5c, type: 2}
+  - {fileID: 11400000, guid: 28fb4966221a176499c1d4bb3d78b7fc, type: 2}
+  - {fileID: 11400000, guid: d51105f2a0348254fa53258f683dd517, type: 2}
+  - {fileID: 11400000, guid: e4918d7b5131af343b2afb28fae9cdbf, type: 2}

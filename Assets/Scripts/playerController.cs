@@ -17,12 +17,21 @@ public class playerController : MonoBehaviour {
     private textBox textBox;
     private RectTransform rt;
     private roomController roomController;
+    private AudioSource BGM;
     private AudioSource SFX;
+    private AudioSource[] chord;
+    private altarController altarWheel;
 
     private GameObject clickable;
     private Transform objectsLayer;
 
     private string currentAnimation = "idle";
+    private string passcode = "";
+    private int candlesLit = 0;
+    private int chordNotes = 0;
+    private int dietiesPleased = 0;
+
+    private bool docentUnlocked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +41,17 @@ public class playerController : MonoBehaviour {
         textBox = GameObject.Find("TextBox").GetComponent<textBox>();
         spine = GetComponent<SkeletonGraphic>();
         roomController = GetComponentInParent<roomController>();
+        BGM = GameObject.Find("BGM 1").GetComponent<AudioSource>();
         SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
+        altarWheel = GameObject.Find("Wheel").GetComponent<altarController>();
+
+        chord = new AudioSource[6];
+        chord[0] = GameObject.Find("Chord 1").GetComponent<AudioSource>();
+        chord[1] = GameObject.Find("Chord 2").GetComponent<AudioSource>();
+        chord[2] = GameObject.Find("Chord 3").GetComponent<AudioSource>();
+        chord[3] = GameObject.Find("Chord 4").GetComponent<AudioSource>();
+        chord[4] = GameObject.Find("Chord 5").GetComponent<AudioSource>();
+        chord[5] = GameObject.Find("Chord 6").GetComponent<AudioSource>();
 
         clickable = Resources.Load("Clickable") as GameObject;
         objectsLayer = GameObject.Find("Objects").transform;
@@ -199,24 +218,218 @@ public class playerController : MonoBehaviour {
 
     private void SpecialAction(clickable target, item item)
     {
-        Debug.Log(target.name);
         if (target.name == "Door Desk")
             roomController.moveToRoom("Room Desk Closeup");
+
+        if (target.name == "Door Altar")
+            roomController.moveToRoom("Room Altar Closeup");
 
         if (target.name == "Door Back Arrow")
             roomController.moveToRoom("Room Main Temple");
 
         if (target.name == "Door Docent")
         {
-            if (im.haveDimmedOrb())
-                roomController.moveToRoom("Room Docent Room");
-            else
+            if (docentUnlocked)
             {
-                StartCoroutine(roomController.darkDocentRoom());
+                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/open_withcreak"));
+                if (im.haveDimmedOrb())
+                    roomController.moveToRoom("Room Docent Room");
+                else
+                {
+                    StartCoroutine(roomController.darkDocentRoom());
+                }
             }
+            else roomController.moveToRoom("Room Keypad Closeup");
         }
 
         if (target.name == "Door Main Temple")
+        {
             roomController.moveToRoom("Room Main Temple");
+            SFX.PlayOneShot((AudioClip) Resources.Load("SFX/open_withcreak"));
+        }
+
+            //keypad code
+        if (target.name == "1" || target.name == "2" || target.name == "3" || target.name == "4" || target.name == "5" 
+            || target.name == "6" || target.name == "7" || target.name == "8" || target.name == "9" || target.name == "0")
+        {
+            SFX.PlayOneShot((AudioClip)Resources.Load("SFX/beep"));
+            passcode += target.name;
+
+            Debug.Log(passcode);
+        }
+
+        if (target.name == "clear")
+        {
+            SFX.PlayOneShot((AudioClip)Resources.Load("SFX/final"));
+            passcode = "";
+        }
+
+        if (target.name == "enter")
+        {
+            if (passcode == "6024")
+            {
+                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/unlock"));
+                docentUnlocked = true;
+                roomController.moveToRoom("Room Main Temple");
+            }
+            else
+            {
+                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/errorbeep"));
+                passcode = "";
+            }
+        }
+
+        //altar
+        if ((target.name == "Candle_Empty 1" || target.name == "Candle_Empty 2" || target.name == "Candle_Empty 3")
+            && item.name == "Candle")
+        {
+            chordNotes++;
+            playNote(chordNotes);
+        }
+
+        if ((target.name == "Candle_Unlit 1" || target.name == "Candle_Unlit 2" || target.name == "Candle_Unlit 3") 
+            && item.name == "Matches")
+        {
+            candlesLit++;
+            chordNotes++;
+            Debug.Log(candlesLit + " candles lit");
+            playNote(chordNotes);
+        }
+
+        //wheel
+        if (target.name == "Wheel")
+        {
+            if (item.name == "Hand")
+            {
+                altarWheel.rotateWheel();
+                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/GrindingStone"));
+            }
+            else if (item.name.Contains("Piece") == true)
+            {
+                altarWheel.addDiety(item);
+                im.removeItem(item);
+                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/stoneclick"));
+            }
+            else textBox.displayText("This doesn't go there.");
+        }
+
+        //make sacrifices
+        {
+            if (target.name == "Altar Top")
+            {
+                if (candlesLit == 0)
+                {
+                    textBox.displayText("I should light some candles.");
+                }
+                else if (candlesLit < 3)
+                {
+                    textBox.displayText("I need more candles.");
+                }
+                else
+                {
+                    Diety diety = altarWheel.currentSelection();
+                    if (diety == Diety.None)
+                    {
+                        textBox.displayText("I need need to choose who I will sacrifice to on the wheel.");
+                    }
+                    else
+                    {
+                        bool sacrifice = false;
+                        if (diety == Diety.Cuchulain && item.name == "Fast Food")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.belt);
+                        }
+                        if (diety == Diety.Anansi && item.name == "Pot of Wisdom")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.scroll);
+                        }
+                        if (diety == Diety.Nephthys && item.name == "Cheetos")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.lion);
+                        }
+                        if (diety == Diety.Amaterasu && item.name == "Mirror")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.orb);
+                        }
+                        if (diety == Diety.Mercury && item.name == "Lockpicks")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.sandal);
+                        }
+                        if (diety == Diety.Sekhmet && item.name == "Wine")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.knife);
+                        }
+                        if (diety == Diety.MonkeyKing && item.name == "Staff")
+                        {
+                            sacrifice = true;
+                            roomController.addToRoom(altarWheel.hair);
+                        }
+                        if (diety == Diety.Cthulhu && item.name == "Bloody Knife")
+                        {
+                            altarWheel.pleaseDiety();
+                            ending(Diety.Cthulhu);
+                        }
+                        if (diety == Diety.GummyBear && item.name == "Candy")
+                        {
+                            altarWheel.pleaseDiety();
+                            ending(Diety.GummyBear);
+                        }
+                        if (diety == Diety.Baldr && (item.name != "Hand" && item.name != "Bloody Knife"))
+                        {
+                            altarWheel.pleaseDiety();
+                            ending(Diety.Baldr);
+                        }
+
+                        if (sacrifice)
+                        {
+                            im.removeItem(item);
+                            GameObject flame = (GameObject) Instantiate(Resources.Load("Flame"), roomController.gameObject.transform);
+                            flame.GetComponent<RectTransform>().localPosition = new Vector3(620, 100);
+                            altarWheel.pleaseDiety();
+                            float time = BGM.time;
+
+                            dietiesPleased++;
+
+                            BGM.clip = (AudioClip)Resources.Load("BGM/Wandering-" + Mathf.Min(dietiesPleased,5));
+                            BGM.time = time;
+                            BGM.loop = true;
+                            BGM.Play();
+                        }
+                        else textBox.displayText("My sacrifice was not accepted.");
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void ending(Diety diety)
+    {
+        db.ending = diety;
+        if (diety == Diety.GummyBear)
+            db.GummyBearEnding = true;
+        if (diety == Diety.Cthulhu)
+            db.CthulhuEnding = true;
+        if (diety == Diety.Baldr)
+            db.BaldrEnding = true;
+
+        //fade out
+        roomController.moveToRoom("Ending");
+    }
+
+    private void playNote(int notes)
+    {
+        for (int x = 0; x < notes; x++)
+        {
+            chord[x].Stop();
+            chord[x].time = 0;
+            chord[x].Play();
+        }
     }
 }

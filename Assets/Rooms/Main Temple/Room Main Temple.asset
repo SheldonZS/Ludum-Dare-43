@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f138a072cf71c2745b3339f27ccc7ddd, type: 3}
   m_Name: Room Main Temple
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 21300000, guid: ed69c60c98b77d049ba49052ea75b5f0, type: 3}
+  roomImage: {fileID: 21300000, guid: ffdcdfffd3d41894ab2515bdff37b5ae, type: 3}
   playerVisible: 1
   clickables:
   - {fileID: 11400000, guid: fb262b9ac44273b4295c4df1aa4b5492, type: 2}
@@ -29,3 +29,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c21e01d9701096347bc2ea2d79947a2c, type: 2}
   - {fileID: 11400000, guid: 4d2d74b3e5a8b0a489f273cb8b9d9dec, type: 2}
   - {fileID: 11400000, guid: d0bf7c1d7bc7c8b47922e133ba9a18df, type: 2}
+  - {fileID: 11400000, guid: 67684793ba9d55d43b7c42bbd8ee436f, type: 2}
+  - {fileID: 11400000, guid: 9dbc97e0e7209614e83bb628eedccb77, type: 2}

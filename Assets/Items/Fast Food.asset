@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Fast Food
   m_EditorClassIdentifier: 
   itemName: Fast Food
-  icon: {fileID: 21300000, guid: 61f59761b0772d64cbe4345cd533c454, type: 3}
+  icon: {fileID: 21300000, guid: e17f636a212575f4782e9038cbc75816, type: 3}
   lookDescription:
   - I don't want to eat this. Except maybe just one fry.
   - What idiot left this meal on the ground?

@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
   m_Name: Item Candle
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 0204525838fa66b47a545012fc12a40b, type: 3}
-  position: {x: 1138, y: 572, z: 0}
-  size: {x: 150, y: 150}
+  sprite: {fileID: 21300000, guid: d77b9e869be8c8e46b406ba35e6fb1b4, type: 3}
+  position: {x: 678.4, y: 532.7, z: 0}
+  size: {x: 75, y: 75}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: I found a candle
+  handText: I found a candle.
   handActions:
   - action: 1
     item: {fileID: 0}

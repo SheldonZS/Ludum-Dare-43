@@ -12,18 +12,27 @@ MonoBehaviour:
   m_Name: Candle_Empty 3
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0}
+  position: {x: 870, y: 95, z: 0}
+  size: {x: 50, y: 50}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0
   handText: Something needs to go here.
   handActions: []
-  correctItem: {fileID: 0}
-  consumeItem: 0
+  correctItem: {fileID: 11400000, guid: 9686e46ba87862e45bf867620804620c, type: 2}
+  consumeItem: 1
   correctAnimation: 0
   correctText: 
-  correctActions: []
+  correctActions:
+  - action: 1
+    item: {fileID: 0}
+    clickable: {fileID: 0}
+  - action: 2
+    item: {fileID: 0}
+    clickable: {fileID: 11400000, guid: 080222079abb0c0409b63ddd732936f8, type: 2}
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}
   wrongAnimation: 0
   overrideWrongText: 0
   wrongOverrideText: 

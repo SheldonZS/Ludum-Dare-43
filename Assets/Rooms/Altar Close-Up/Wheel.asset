@@ -12,19 +12,28 @@ MonoBehaviour:
   m_Name: Wheel
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0}
+  position: {x: 633, y: 428, z: 0}
+  size: {x: 300, y: 300}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: These carvings look familiar ... but some are still missing.
-  handActions: []
+  handText: 
+  handActions:
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}
   correctItem: {fileID: 0}
   consumeItem: 0
   correctAnimation: 0
   correctText: 
-  correctActions: []
+  correctActions:
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}
   wrongAnimation: 0
-  overrideWrongText: 0
+  overrideWrongText: 1
   wrongOverrideText: 
-  wrongActions: []
+  wrongActions:
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}

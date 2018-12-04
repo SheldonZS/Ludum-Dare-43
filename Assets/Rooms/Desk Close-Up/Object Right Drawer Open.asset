@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
   m_Name: Object Right Drawer Open
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0}
+  sprite: {fileID: 21300000, guid: 2061d0a1c2f2a9e419331775ee6947bf, type: 3}
+  position: {x: 1052, y: 81, z: 0}
+  size: {x: 340, y: 160}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0

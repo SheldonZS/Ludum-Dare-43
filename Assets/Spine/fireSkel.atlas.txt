@@ -1,0 +1,27 @@
+
+fireSkel.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 3
+  rotate: true
+  xy: 2, 2
+  size: 220, 970
+  orig: 220, 970
+  offset: 0, 0
+  index: -1
+Layer 5
+  rotate: false
+  xy: 582, 224
+  size: 371, 725
+  orig: 371, 725
+  offset: 0, 0
+  index: -1
+Layer 7
+  rotate: false
+  xy: 2, 287
+  size: 578, 662
+  orig: 578, 662
+  offset: 0, 0
+  index: -1

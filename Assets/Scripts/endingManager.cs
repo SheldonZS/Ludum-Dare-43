@@ -72,8 +72,8 @@ public class endingManager : MonoBehaviour {
         else GameObject.Find("Sekhmet").GetComponent<Image>().overrideSprite = SekhmetOff;
 
         if (db.MonkeyKingOffering == true)
-            GameObject.Find("MonkeyKing").GetComponent<Image>().overrideSprite = MonkeyKingOn;
-        else GameObject.Find("MonkeyKing").GetComponent<Image>().overrideSprite = MonkeyKingOff;
+            GameObject.Find("Monkey King").GetComponent<Image>().overrideSprite = MonkeyKingOn;
+        else GameObject.Find("Monkey King").GetComponent<Image>().overrideSprite = MonkeyKingOff;
     }
 	
     public void returnToTitle()

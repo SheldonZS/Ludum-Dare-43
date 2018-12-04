@@ -18,13 +18,19 @@ MonoBehaviour:
   facingRight: 1
   handAnimation: 0
   handText: 
-  handActions: []
+  handActions:
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}
   correctItem: {fileID: 0}
   consumeItem: 0
   correctAnimation: 0
   correctText: 
   correctActions: []
   wrongAnimation: 0
-  overrideWrongText: 0
+  overrideWrongText: 1
   wrongOverrideText: 
-  wrongActions: []
+  wrongActions:
+  - action: 4
+    item: {fileID: 0}
+    clickable: {fileID: 0}

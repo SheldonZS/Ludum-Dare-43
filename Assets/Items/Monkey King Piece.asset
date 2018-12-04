@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Monkey King Piece
   m_EditorClassIdentifier: 
   itemName: new item
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 88b6dfd7ce887b54e91d3c2edc01ec98, type: 3}
   lookDescription:
   - This carving reminds me of monkeys.
   useWrongText:

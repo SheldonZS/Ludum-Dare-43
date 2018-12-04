@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Decoration Post Cards
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 229, y: 394, z: 0}
-  size: {x: 192, y: 100}
+  position: {x: 229, y: 473, z: 0}
+  size: {x: 192, y: 254}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0

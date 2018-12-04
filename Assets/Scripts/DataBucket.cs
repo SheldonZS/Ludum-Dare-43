@@ -18,6 +18,8 @@ public class DataBucket : MonoBehaviour {
     public bool MercuryOffering = false;
     public bool MonkeyKingOffering = false;
 
+    public Diety ending;
+
     void Awake ()
     {
         if (instance == null)

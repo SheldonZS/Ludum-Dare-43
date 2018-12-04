@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Item Wine
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 7af00efe1f0363347a443ea0196fc80d, type: 3}
-  position: {x: 193, y: 186, z: 0}
+  position: {x: 192, y: 186, z: 0}
   size: {x: 11, y: 50}
   moveTo: {x: 280, y: 160, z: 0}
   facingRight: 0
