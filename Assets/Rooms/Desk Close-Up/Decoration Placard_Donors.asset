@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Name: Decoration Placard_Donors
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 925, y: 559, z: 0}
-  size: {x: 301, y: 66}
+  position: {x: 925, y: 600, z: 0}
+  size: {x: 301, y: 150}
   moveTo: {x: 0, y: 0, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: It reads, "For Howaardt, 1978-2058, his wife Mariya, 1980-2071, his children
-    Taryon, 2001- , & Maryanne, 2002-"
+  handText: 'It reads, "Eternal gratitude to: Howaardt, 1978-2058, his wife Mariya,
+    1980-2071, his son Taryon, 2001- , & his daughter, Maryanne, 2002-"'
   handActions: []
   correctItem: {fileID: 0}
   consumeItem: 0
   correctAnimation: 0
-  correctText: It reads, "For Howaardt, 1978-2058, his wife Mariya, 1980-2071, his
-    children Taryon, 2001- , & Maryanne, 2002-"
+  correctText: 'It reads, "Eternal gratitude to: Howaardt, 1978-2058, his wife Mariya,
+    1980-2071, his children Taryon, 2001- , & Maryanne, 2002-"'
   correctActions: []
   wrongAnimation: 0
   overrideWrongText: 0
-  wrongOverrideText: It reads, "For Howaardt, 1978-2058, his wife Mariya, 1980-2071,
-    his children Taryon, 2001- , & Maryanne, 2002-"
+  wrongOverrideText: 'It reads, "Eternal gratitude to: Howaardt, 1978-2058, his wife
+    Mariya, 1980-2071, his children Taryon, 2001- , & Maryanne, 2002-"'
   wrongActions: []

@@ -22,8 +22,8 @@ MonoBehaviour:
   correctItem: {fileID: 11400000, guid: 52f2de97bf685d64d88421e710aac558, type: 2}
   consumeItem: 0
   correctAnimation: 3
-  correctText: With the strength from the belt, I lifted a set of lockpicks out from
-    under the desk.
+  correctText: With the strength from the belt, I lifted a stone wedge out from under
+    the desk.
   correctActions:
   - action: 1
     item: {fileID: 0}

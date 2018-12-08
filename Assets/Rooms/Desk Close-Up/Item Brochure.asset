@@ -32,7 +32,7 @@ MonoBehaviour:
   correctActions: []
   wrongAnimation: 0
   overrideWrongText: 1
-  wrongOverrideText: A brochure on the temple
+  wrongOverrideText: This brochure was so cheaply made.
   wrongActions:
   - action: 1
     item: {fileID: 0}

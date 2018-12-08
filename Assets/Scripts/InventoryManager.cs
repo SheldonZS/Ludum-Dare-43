@@ -8,9 +8,6 @@ public class InventoryManager : MonoBehaviour {
     public Sprite nextArrow;
     public Sprite blank;
 
-    [Header("Initial Inventory")]
-    public item[] defaultInventory;
-
     [Header("Recipe Book")]
     public recipeSO recipeBook;
 
@@ -32,6 +29,7 @@ public class InventoryManager : MonoBehaviour {
     private int selectedItem;
     private int currentPage;
     private frameControl selectedFrame;
+    private DataBucket db;
 
     private void Start()
     {
@@ -44,6 +42,7 @@ public class InventoryManager : MonoBehaviour {
         SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
         player = GameObject.Find("Protag").GetComponent<playerController>();
         fullScreenImage = GameObject.Find("Fullscreen Image").GetComponent<Image>();
+        db = GameObject.Find("DataBucket").GetComponent<DataBucket>();
 
         Vector3 localPos = Vector3.zero;
         localPos.y = 64;
@@ -58,6 +57,8 @@ public class InventoryManager : MonoBehaviour {
             newSlot.im = this;
             inventorySlots[x] = newSlot;
         }
+
+        item[] defaultInventory = db.getInventory();
 
         for (int x = 0; x < defaultInventory.Length; x++)
             addItem(defaultInventory[x]);
@@ -81,7 +82,13 @@ public class InventoryManager : MonoBehaviour {
         {
             item currentItem = inventory[selectedItem];
             int targetItemSlot = 9 * currentPage + x;
-            item targetItem = inventory[targetItemSlot];
+
+            item targetItem = null;
+
+            if (targetItemSlot < inventory.Count)
+                targetItem = inventory[targetItemSlot];
+            else
+                return;
 
             if (currentItem == targetItem)
             {
@@ -162,9 +169,12 @@ public class InventoryManager : MonoBehaviour {
             for (int x = 0; x < 10; x++)
             {
                 if (x < inventory.Count)
+                {
                     inventorySlots[x].image.sprite = inventory[x].icon;
+                    inventorySlots[x].image.color = Color.white;
+                }
                 else
-                    inventorySlots[x].image.sprite = blank;
+                    inventorySlots[x].image.color = Color.clear;
             }
 
             currentPage = 0;
@@ -177,10 +187,13 @@ public class InventoryManager : MonoBehaviour {
                 page = 0;
             for (int x = 0; x < 9; x++)
             {
-                if (9*page + x < inventory.Count)
-                    inventorySlots[x].image.sprite = inventory[9*page + x].icon;
+                if (9 * page + x < inventory.Count)
+                {
+                    inventorySlots[x].image.sprite = inventory[9 * page + x].icon;
+                    inventorySlots[x].image.color = Color.white;
+                }
                 else
-                    inventorySlots[x].image.sprite = blank;
+                    inventorySlots[x].image.color = Color.clear;
 
                 if (selectedItem == 9 * page + x)
                     selectedFrame.setSlot(x);
@@ -241,5 +254,10 @@ public class InventoryManager : MonoBehaviour {
     public bool haveDimmedOrb()
     {
         return inventory.Contains(dimmedOrb);
+    }
+
+    public void save()
+    {
+        db.saveInventory(inventory);
     }
 }

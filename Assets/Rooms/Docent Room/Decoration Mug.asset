@@ -9,31 +9,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
-  m_Name: Wheel
+  m_Name: Decoration Mug
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 629.6, y: 404.7, z: 0}
-  size: {x: 432.1, y: 435.7}
-  moveTo: {x: 0, y: 0, z: 0}
+  position: {x: 800, y: 227, z: 0}
+  size: {x: 30, y: 30}
+  moveTo: {x: 964, y: 104, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: 
-  handActions:
-  - action: 4
-    item: {fileID: 0}
-    clickable: {fileID: 0}
+  handText: This looks like the mug my buddy Sheldon uses while coding!
+  handActions: []
   correctItem: {fileID: 0}
   consumeItem: 0
   correctAnimation: 0
   correctText: 
-  correctActions:
-  - action: 4
-    item: {fileID: 0}
-    clickable: {fileID: 0}
+  correctActions: []
   wrongAnimation: 0
-  overrideWrongText: 1
+  overrideWrongText: 0
   wrongOverrideText: 
-  wrongActions:
-  - action: 4
-    item: {fileID: 0}
-    clickable: {fileID: 0}
+  wrongActions: []

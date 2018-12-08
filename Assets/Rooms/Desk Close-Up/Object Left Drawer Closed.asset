@@ -22,7 +22,7 @@ MonoBehaviour:
   correctItem: {fileID: 11400000, guid: abc838c499c977c4194ad47459f0bd3f, type: 2}
   consumeItem: 0
   correctAnimation: 0
-  correctText: The key unlocked the drawer
+  correctText: The key unlocked the drawer!
   correctActions:
   - action: 1
     item: {fileID: 0}

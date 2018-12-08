@@ -53,17 +53,10 @@ public class altarController : MonoBehaviour {
         for (int x = 0; x < 10; x++)
         {
             slotImages[x] = GameObject.Find("Slot " + x).GetComponent<Image>();
-            wheel[x] = new wheelSlot();
         }
         wheelOutline = GameObject.Find("Outlines").GetComponent<Image>();
 
-        wheel[0].diety = Diety.Amaterasu;
-        wheel[3].diety = Diety.Sekhmet;
-        wheel[4].diety = Diety.MonkeyKing;
-        wheel[8].diety = Diety.Nephthys;
-
-        Debug.Log("Wheel: " + wheel[0].diety + wheel[1].diety + wheel[2].diety + wheel[3].diety + wheel[4].diety +
-            wheel[5].diety + wheel[6].diety + wheel[7].diety + wheel[8].diety + wheel[9].diety);
+        wheel = db.getWheel();
     }
 
     public Diety currentSelection()
@@ -221,6 +214,11 @@ public class altarController : MonoBehaviour {
             i.enabled = false;
     }
 
+    public void save()
+    {
+        db.saveWheel(wheel);
+    }
+
 }
 
 [System.Serializable]
@@ -233,6 +231,18 @@ public class wheelSlot
     {
         diety = Diety.None;
         pleased = false;
+    }
+
+    public wheelSlot(Diety d)
+    {
+        diety = d;
+        pleased = false;
+    }
+
+    public wheelSlot(wheelSlot input)
+    {
+        diety = input.diety;
+        pleased = input.pleased;
     }
 }
 

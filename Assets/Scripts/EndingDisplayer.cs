@@ -37,15 +37,15 @@ public class EndingDisplayer : MonoBehaviour {
                 musicPlayer.PlayOneShot(Resources.Load<AudioClip>("BGM/Gummy_Victory"));
 
                 musicPlayer.loop = false;
-                endingText.text = "I can't think of a justification for why I sacrificed to the Gummy Bear God. I am part of it now. And soon world will join me, absorbed into the Gummy Mass of Everything Sweet, which is everything.";
+                endingText.text = "I can't think of a justification for why I sacrificed to the Gummy Bear God. I am part of it now. And soon the world will join me, absorbed into the Gummy Mass of Everything Sweet, which is everything.";
                 endingImage.overrideSprite = Resources.Load<Sprite>("gummy_ending");
                 break;
             case Diety.Baldr:
                 musicPlayer.PlayOneShot(Resources.Load<AudioClip>("BGM/BaldrVictory3"));
                 musicPlayer.loop = false;
 
-                endingText.text = "I made it out of the temple! Baldr opened the doors for me when no one else would! Praise Baldr! You're my favorite. I'm sure you wanted to free me as soon as you learned about my pilght. Sorry if I never return.";
-                endingImage = Resources.Load<Image>("baldr_ending");
+                endingText.text = "I made it out of the temple! Baldr opened the doors for me when no one else would! Praise Baldr! You're my favorite. I'm sure you wanted to free me as soon as you learned about my plight. Sorry if I never return.";
+                endingImage.overrideSprite = Resources.Load<Sprite>("baldr_ending");
                 break;
             default:
                 endingText.text = "Error: ending not found";

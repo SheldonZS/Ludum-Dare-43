@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Door Desk
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 338, y: 320, z: 0}
-  size: {x: 282, y: 155}
+  position: {x: 338, y: 303, z: 0}
+  size: {x: 282, y: 194.19}
   moveTo: {x: 355, y: 160, z: 0}
   facingRight: 1
   handAnimation: 0

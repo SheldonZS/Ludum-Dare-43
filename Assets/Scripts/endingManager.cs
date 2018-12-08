@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class endingManager : MonoBehaviour {
 
     private DataBucket db;
+    private AudioSource SFX;
 
     public Sprite BaldrEnding;
     public Sprite CthulhuEnding;
@@ -28,6 +29,7 @@ public class endingManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         db = GameObject.Find("DataBucket").GetComponent<DataBucket>();
+        SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
 
         if(db.BaldrEnding == true)
         {
@@ -76,6 +78,36 @@ public class endingManager : MonoBehaviour {
         else GameObject.Find("Monkey King").GetComponent<Image>().overrideSprite = MonkeyKingOff;
     }
 	
+    public void cthuluEnding()
+    {
+        if (db.CthulhuEnding)
+        {
+            db.ending = Diety.Cthulhu;
+            SceneManager.LoadScene("ending");
+        }
+        else SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/errorbeep"));
+    }
+
+    public void baldrEnding()
+    {
+        if (db.BaldrEnding)
+        { 
+            db.ending = Diety.Baldr;
+            SceneManager.LoadScene("ending");
+        }
+        else SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/errorbeep"));
+    }
+
+    public void gummyEnding()
+    {
+        if (db.GummyBearEnding)
+        { 
+            db.ending = Diety.GummyBear;
+            SceneManager.LoadScene("ending");
+        }
+        else SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/errorbeep"));
+    }
+
     public void returnToTitle()
     {
         SceneManager.LoadScene("Title");

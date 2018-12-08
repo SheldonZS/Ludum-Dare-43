@@ -9,31 +9,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5868628f3293f3243a1a1d1a1218d3c9, type: 3}
-  m_Name: Wheel
+  m_Name: Decoration Corkboard
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  position: {x: 629.6, y: 404.7, z: 0}
-  size: {x: 432.1, y: 435.7}
-  moveTo: {x: 0, y: 0, z: 0}
+  position: {x: 399, y: 390, z: 0}
+  size: {x: 200, y: 123}
+  moveTo: {x: 585, y: 109, z: 0}
   facingRight: 0
   handAnimation: 0
-  handText: 
-  handActions:
-  - action: 4
-    item: {fileID: 0}
-    clickable: {fileID: 0}
+  handText: A tour schedule and a man in a top hat giving positive feedback. I feel
+    encouraged!
+  handActions: []
   correctItem: {fileID: 0}
   consumeItem: 0
   correctAnimation: 0
   correctText: 
-  correctActions:
-  - action: 4
-    item: {fileID: 0}
-    clickable: {fileID: 0}
+  correctActions: []
   wrongAnimation: 0
   overrideWrongText: 1
-  wrongOverrideText: 
-  wrongActions:
-  - action: 4
-    item: {fileID: 0}
-    clickable: {fileID: 0}
+  wrongOverrideText: Let's not pin that up there.
+  wrongActions: []

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   position: {x: 1228, y: 295, z: 0}
-  size: {x: 25, y: 20}
-  moveTo: {x: 950, y: 170, z: 0}
+  size: {x: 35.4, y: 26.1}
+  moveTo: {x: 1130, y: 170, z: 0}
   facingRight: 1
   handAnimation: 0
-  handText: 'It reads, "Restoration Donors: Terry Gruenewald - 2020, Howaardt & Mariya
-    Darrington - 2021, W. M. Gso - 2024"'
+  handText: 'It reads, "Restoration Donors: T. Gruenewald - 2020, Howaardt & Mariya
+    Darrington - 2021, W. M. Gso - 2024, Sy Chen - 2024"'
   handActions: []
   correctItem: {fileID: 0}
   consumeItem: 0

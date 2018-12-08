@@ -11,6 +11,7 @@ public class LoadScene : MonoBehaviour {
     //public Text actualinstructions;
     //private AudioSource buttonSound;
     private AudioSource musicPlayer;
+    private AudioSource customLooper;
     private AudioSource sfxPlayer;
     private DataBucket databucket;
 
@@ -19,8 +20,23 @@ public class LoadScene : MonoBehaviour {
         //buttonSound = GameObject.Find ("ButtonSound").GetComponent<AudioSource> ();
         databucket = GameObject.Find("DataBucket").GetComponent<DataBucket>();
         musicPlayer = GameObject.Find("BGM 1").GetComponent <AudioSource>();
+        customLooper = GameObject.Find("BGM 2").GetComponent <AudioSource>();
         sfxPlayer = GameObject.Find("SFX").GetComponent<AudioSource>();
 
+    }
+
+    private void Start()
+    {
+        if( SceneManager.GetActiveScene().name == "title")
+        {
+            if (databucket.savedGame == true)
+            {
+                Image button = GameObject.Find("ContinueButton").GetComponent<Image>();
+                button.enabled = true;
+                button.GetComponentInChildren<Text>().enabled = true;
+            }
+
+        }
     }
 
 
@@ -29,10 +45,17 @@ public class LoadScene : MonoBehaviour {
 	
 	}
 
+    public void Continue()
+    {
+        databucket.loadGame = true;
+        LoadLevel();
+    }
+
 	public void LoadLevel()
     {
         SceneManager.LoadScene ("Sample_Scene");
         sfxPlayer.Stop();
+        customLooper.Stop();
         musicPlayer.clip = Resources.Load<AudioClip>("BGM/wandering");
         musicPlayer.loop = true;
         musicPlayer.Play ();
@@ -40,10 +63,10 @@ public class LoadScene : MonoBehaviour {
 
     public void LoadIntro()
     {
+        sfxPlayer.Stop();
+        customLooper.Stop();
         SceneManager.LoadScene("intro");
-        musicPlayer.clip = Resources.Load<AudioClip>("BGM/IntroTune");
-        musicPlayer.loop = true;
-        musicPlayer.Play();
+        customLooper.GetComponent<customLoop>().playCustomLoop(musicPlayer.clip = Resources.Load<AudioClip>("BGM/IntroTune"), 5.902f, 11.892f);
     }
 
 		
@@ -54,9 +77,9 @@ public class LoadScene : MonoBehaviour {
 
 		if (SceneManager.GetActiveScene().name == "ending" || SceneManager.GetActiveScene().name == "Sample_Scene")
 		{
-            musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title");
-            musicPlayer.loop = true;
-            musicPlayer.Play();
+            sfxPlayer.Stop();
+            customLooper.Stop();
+            customLooper.GetComponent<customLoop>().playCustomLoop(musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title"),53.666f,78.951f);
         }
 	}
 
@@ -65,9 +88,10 @@ public class LoadScene : MonoBehaviour {
         SceneManager.LoadScene("EndingViewer");
         if (SceneManager.GetActiveScene().name == "ending" || SceneManager.GetActiveScene().name == "Sample_Scene")
         {
-            musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title");
-            musicPlayer.loop = true;
-            musicPlayer.Play();
+            sfxPlayer.Stop();
+            customLooper.Stop();
+            customLooper.GetComponent<customLoop>().playCustomLoop(musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title"), 53.666f, 78.951f);
+
         }
     }
 
@@ -76,9 +100,10 @@ public class LoadScene : MonoBehaviour {
         SceneManager.LoadScene("jukebox");
         if (SceneManager.GetActiveScene().name == "ending" || SceneManager.GetActiveScene().name == "Sample_Scene")
         {
-            musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title");
-            musicPlayer.loop = true;
-            musicPlayer.Play();
+            sfxPlayer.Stop();
+            customLooper.Stop();
+            customLooper.GetComponent<customLoop>().playCustomLoop(musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title"), 53.666f, 78.951f);
+
         }
 
     }
@@ -93,11 +118,17 @@ public class LoadScene : MonoBehaviour {
 
         if (SceneManager.GetActiveScene().name == "Sample_Scene" || SceneManager.GetActiveScene().name == "ending")
         {
-            musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title");
-            musicPlayer.loop = true;
-            musicPlayer.Play();
+            sfxPlayer.Stop();
+            customLooper.Stop();
+            customLooper.GetComponent<customLoop>().playCustomLoop(musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title"), 53.666f, 78.951f);
         }
 
+        if (musicPlayer.isPlaying == false && customLooper.isPlaying == false)
+        {
+            sfxPlayer.Stop();
+            customLooper.Stop();
+            customLooper.GetComponent<customLoop>().playCustomLoop(musicPlayer.clip = Resources.Load<AudioClip>("BGM/Main Title"), 53.666f, 78.951f);
+        }
     }
 
     public void RestartLevel()

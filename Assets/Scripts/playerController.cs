@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour {
 
@@ -27,10 +28,10 @@ public class playerController : MonoBehaviour {
 
     private string currentAnimation = "idle";
     private string passcode = "";
-    private int candlesLit = 0;
-    private int chordNotes = 0;
-    private int dietiesPleased = 0;
 
+    private int candlesLit;
+    private int chordNotes;
+    private int dietiesPleased;
     private bool docentUnlocked = false;
 
 	// Use this for initialization
@@ -55,7 +56,15 @@ public class playerController : MonoBehaviour {
 
         clickable = Resources.Load("Clickable") as GameObject;
         objectsLayer = GameObject.Find("Objects").transform;
-	}
+
+        int[] temp = db.getPlayer();
+        Debug.Log(temp);
+
+        candlesLit = temp[0];
+        chordNotes = temp[1];
+        dietiesPleased = temp[2];
+        docentUnlocked = (temp[3] == 1);
+    }
 	
     public void clickedObject(clickableController target)
     {
@@ -66,6 +75,8 @@ public class playerController : MonoBehaviour {
     private IEnumerator playerAction(clickableController targetController, item item)
     {
         busy = true;
+
+        float frameWalk = walkSpeed * Time.deltaTime;
 
         clickable target = targetController.clickable;
 
@@ -79,7 +90,7 @@ public class playerController : MonoBehaviour {
 
             currentAnimation = "idle";
 
-            while (Vector3.Distance(target.moveTo, pos) > walkSpeed)
+            while (Vector3.Distance(target.moveTo, pos) > frameWalk)
             {
                 if (currentAnimation == "idle")
                 {
@@ -88,7 +99,7 @@ public class playerController : MonoBehaviour {
                     spine.Skeleton.FlipX = moveDirection.x > 0;
                 }
 
-                pos += moveDirection * walkSpeed;
+                pos += moveDirection * frameWalk;
                 rt.localPosition = pos;
                 yield return null;
             }
@@ -143,7 +154,7 @@ public class playerController : MonoBehaviour {
                 yield return new WaitForSeconds(.5f);
             }
             else if (currentAnimation != "idle")
-                spine.AnimationState.AddAnimation(0, "idle", true, 0f);
+                spine.AnimationState.SetAnimation(0, "idle", true);
 
 
             currentAnimation = "idle";
@@ -236,16 +247,30 @@ public class playerController : MonoBehaviour {
                     roomController.moveToRoom("Room Docent Room");
                 else
                 {
-                    StartCoroutine(roomController.darkDocentRoom());
+                    StartCoroutine(roomController.darkDocentRoom(item.name == "Orb"));
                 }
             }
+            else textBox.displayText("The door is locked.");
+        }
+
+        if (target.name == "Door Keypad")
+        {
+            if (docentUnlocked)
+                textBox.displayText("The door is already unlocked.");
             else roomController.moveToRoom("Room Keypad Closeup");
+
         }
 
         if (target.name == "Door Main Temple")
         {
             roomController.moveToRoom("Room Main Temple");
             SFX.PlayOneShot((AudioClip) Resources.Load("SFX/open_withcreak"));
+        }
+
+        if (target.name == "Door Baldr Ending")
+        {
+            BGM.volume = 1;
+            ending(Diety.Baldr);
         }
 
             //keypad code
@@ -260,7 +285,7 @@ public class playerController : MonoBehaviour {
 
         if (target.name == "clear")
         {
-            SFX.PlayOneShot((AudioClip)Resources.Load("SFX/final"));
+            SFX.PlayOneShot((AudioClip)Resources.Load("SFX/beep"));
             passcode = "";
         }
 
@@ -299,18 +324,17 @@ public class playerController : MonoBehaviour {
         //wheel
         if (target.name == "Wheel")
         {
-            if (item.name == "Hand")
-            {
-                altarWheel.rotateWheel();
-                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/GrindingStone"));
-            }
-            else if (item.name.Contains("Piece") == true)
+            if (item.name.Contains("Piece") == true)
             {
                 altarWheel.addDiety(item);
                 im.removeItem(item);
                 SFX.PlayOneShot((AudioClip)Resources.Load("SFX/stoneclick"));
             }
-            else textBox.displayText("This doesn't go there.");
+            else
+            {
+                altarWheel.rotateWheel();
+                SFX.PlayOneShot((AudioClip)Resources.Load("SFX/GrindingStone"));
+            }
         }
 
         //make sacrifices
@@ -330,7 +354,7 @@ public class playerController : MonoBehaviour {
                     Diety diety = altarWheel.currentSelection();
                     if (diety == Diety.None)
                     {
-                        textBox.displayText("I need need to choose who I will sacrifice to on the wheel.");
+                        textBox.displayText("I need to choose to whom I will sacrifice on the wheel.");
                     }
                     else
                     {
@@ -372,34 +396,67 @@ public class playerController : MonoBehaviour {
                         }
                         if (diety == Diety.Cthulhu && item.name == "Bloody Knife")
                         {
+                            db.saveGame();
                             altarWheel.pleaseDiety();
-                            ending(Diety.Cthulhu);
+                            db.CthulhuEnding = true;
+                            GameObject flame = (GameObject)Instantiate(Resources.Load("Flame"), roomController.gameObject.transform);
+                            flame.GetComponent<RectTransform>().localPosition = new Vector3(620, 80);
+                            BGM.clip = Resources.Load<AudioClip>("BGM/CthuDidItRight");
+                            BGM.loop = false;
+                            BGM.Play();
+                            im.removeItem(item);
+                            StartCoroutine(CthulhuEnding());
+                            return;
                         }
                         if (diety == Diety.GummyBear && item.name == "Candy")
                         {
+                            db.saveGame();
                             altarWheel.pleaseDiety();
-                            ending(Diety.GummyBear);
+                            db.GummyBearEnding = true;
+                            GameObject flame = (GameObject)Instantiate(Resources.Load("Flame"), roomController.gameObject.transform);
+                            flame.GetComponent<RectTransform>().localPosition = new Vector3(620, 80);
+                            BGM.clip = Resources.Load<AudioClip>("BGM/GumDidItRight");
+                            BGM.loop = false;
+                            BGM.Play();
+                            im.removeItem(item);
+                            StartCoroutine(GummyEnding());
+                            return;
                         }
                         if (diety == Diety.Baldr && (item.name != "Hand" && item.name != "Bloody Knife"))
                         {
+                            db.saveGame();
                             altarWheel.pleaseDiety();
-                            ending(Diety.Baldr);
+                            db.BaldrEnding = true;
+                            GameObject flame = (GameObject)Instantiate(Resources.Load("Flame"), roomController.gameObject.transform);
+                            flame.GetComponent<RectTransform>().localPosition = new Vector3(620, 80);
+                            BGM.clip = Resources.Load<AudioClip>("BGM/BaldrDidItRight");
+                            BGM.volume = .5f;
+                            BGM.loop = false;
+                            BGM.Play();
+                            im.removeItem(item);
+                            StartCoroutine(BaldrEnding());
+                            return;
                         }
 
                         if (sacrifice)
                         {
                             im.removeItem(item);
                             GameObject flame = (GameObject) Instantiate(Resources.Load("Flame"), roomController.gameObject.transform);
-                            flame.GetComponent<RectTransform>().localPosition = new Vector3(620, 100);
+                            flame.GetComponent<RectTransform>().localPosition = new Vector3(620, 80);
                             altarWheel.pleaseDiety();
-                            float time = BGM.time;
 
                             dietiesPleased++;
 
-                            BGM.clip = (AudioClip)Resources.Load("BGM/Wandering-" + Mathf.Min(dietiesPleased,5));
-                            BGM.time = time;
-                            BGM.loop = true;
-                            BGM.Play();
+                            if (dietiesPleased <= 5)
+                            {
+                                AudioClip nextVersion = (AudioClip)Resources.Load("BGM/Wandering-" + dietiesPleased);
+
+                                float time = BGM.time;
+                                BGM.clip = nextVersion;
+                                BGM.time = time;
+                                BGM.loop = true;
+                                BGM.Play();
+                            }
                         }
                         else textBox.displayText("My sacrifice was not accepted.");
 
@@ -409,16 +466,123 @@ public class playerController : MonoBehaviour {
         }
     }
 
+    private IEnumerator CthulhuEnding()
+    {
+        busy = true;
+        yield return new WaitForSeconds(2f);
+        RectTransform rt = GameObject.Find("Background").GetComponent<RectTransform>();
+        float scale = GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor;
+        Image fader = GameObject.Find("Fader").GetComponent<Image>();
+        Color fadeColor = Color.black;
+        fadeColor.a = 0;
+        fader.enabled = true;
+
+        float startTime = Time.time;
+        float time = 0;
+        SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/sfx_templecollapse"));
+        while (time < 5f)
+        {
+            if((time >= 1f && time - Time.deltaTime < 1f) ||
+                (time >= 2f && time - Time.deltaTime < 2f) ||
+                (time >= 3f && time - Time.deltaTime < 3f) ||
+                (time >= 4f && time - Time.deltaTime < 4f))
+                SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/sfx_templecollapse"));
+            if (time > 3f)
+            {
+                fadeColor.a = Mathf.Clamp(time - 3f, 0f, 1f);
+                fader.color = fadeColor;
+            }
+            rt.localScale = new Vector3 (1 + time / 100, 1 + time / 100);
+            rt.position = new Vector3(Random.Range(-1280 * time / 100,0f), 128 + Random.Range(-672 * time / 100,0f)) * scale;
+            yield return null;
+            time = Time.time - startTime;
+        }
+        db.ending = Diety.Cthulhu;
+        SceneManager.LoadScene("ending");
+        yield return 0;
+    }
+
+    private IEnumerator GummyEnding()
+    {
+        busy = true;
+        yield return new WaitForSeconds(2f);
+
+        Image[] gummy = new Image[10];
+        for(int x = 0; x < 10; x++)
+        gummy[x] = GameObject.Find("Slot " + x).GetComponent<Image>();
+
+        float startTime = Time.time;
+        float time = 0;
+        SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/gummy"));
+        while (time < 2f)
+        {
+            gummy[0].color = new Color(1, 1 - time / 4, 1 - time / 4);
+            yield return null;
+            time = Time.time - startTime;
+        }
+        yield return new WaitForSeconds(.5f);
+
+        startTime = Time.time;
+        time = 0;
+        gummy[0] = GameObject.Find("Outlines").GetComponent<Image>();
+        SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/gummy"));
+        while (time < 2f)
+        {
+            for(int x = 0;x < 10; x++)
+                gummy[x].color = new Color(1, 1 - time / 4, 1 - time / 4);
+            yield return null;
+            time = Time.time - startTime;
+        }
+        yield return new WaitForSeconds(.5f);
+
+        startTime = Time.time;
+        time = 0;
+        Image bg = GameObject.Find("Background").GetComponent<Image>();
+        SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/gummy"));
+        while (time < 2f)
+        {
+            bg.color = new Color(1, 1 - time / 4, 1 - time / 4);
+            yield return null;
+            time = Time.time - startTime;
+        }
+        yield return new WaitForSeconds(.5f);
+
+        Image fader = GameObject.Find("Fader").GetComponent<Image>();
+        fader.enabled = true;
+        Color fadeColor = new Color(1, .5f, .5f);
+        startTime = Time.time;
+        time = 0;
+        SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/gummy"));
+        while (time < 2f)
+        {
+            fadeColor.a = time / 2;
+            fader.color = fadeColor;
+            yield return null;
+            time = Time.time - startTime;
+        }
+        yield return new WaitForSeconds(.5f);
+
+        db.ending = Diety.GummyBear;
+        SceneManager.LoadScene("ending");
+
+        yield return 0;
+    }
+
+    private IEnumerator BaldrEnding()
+    {
+        busy = true;
+        yield return new WaitForSeconds(2f);
+        SFX.PlayOneShot(Resources.Load<AudioClip>("SFX/big door"));
+        yield return new WaitForSeconds(2f);
+        roomController.moveToRoom("Room Baldr Ending");
+        busy = false;
+        yield return 0;
+    }
+
     private void ending(Diety diety)
     {
-        db.ending = diety;
-        if (diety == Diety.GummyBear)
-            db.GummyBearEnding = true;
-        if (diety == Diety.Cthulhu)
-            db.CthulhuEnding = true;
-        if (diety == Diety.Baldr)
-            db.BaldrEnding = true;
 
+        db.ending = diety;
         //fade out
         roomController.moveToRoom("Ending");
     }
@@ -431,5 +595,10 @@ public class playerController : MonoBehaviour {
             chord[x].time = 0;
             chord[x].Play();
         }
+    }
+
+    public void save()
+    {
+        db.savePlayer(candlesLit, chordNotes, dietiesPleased, docentUnlocked);
     }
 }

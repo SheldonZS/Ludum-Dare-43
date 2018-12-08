@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 public class roomController : MonoBehaviour {
 
     public float fadeTime;
-    public roomSO[] initialRooms;
 
     [Header("Special Rooms")]
     public Sprite darkenedDocentRoom;
+    public Sprite orbDocentRoom;
     
     private room[] rooms;
 
@@ -22,6 +22,7 @@ public class roomController : MonoBehaviour {
     private AudioSource BGM;
     private Image Fader;
     private altarController altarWheel;
+    private DataBucket db;
 
     private int currentRoom;
 
@@ -29,7 +30,6 @@ public class roomController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        rooms = new room[initialRooms.Length];
         background = GetComponent<Image>();
         objectsLayer = GameObject.Find("Objects").transform;
         player = GameObject.Find("Protag");
@@ -37,17 +37,9 @@ public class roomController : MonoBehaviour {
         BGM = GameObject.Find("BGM 1").GetComponent<AudioSource>();
         Fader = GameObject.Find("Fader").GetComponent<Image>();
         altarWheel = GameObject.Find("Wheel").GetComponent<altarController>();
+        db = GameObject.Find("DataBucket").GetComponent<DataBucket>();
 
-        for (int x = 0; x < rooms.Length; x++)
-        {
-            rooms[x].name = initialRooms[x].name;
-            rooms[x].roomImage = initialRooms[x].roomImage;
-            rooms[x].playerVisible = initialRooms[x].playerVisible;
-            rooms[x].objects = new List<clickable>();
-
-            foreach (clickable o in initialRooms[x].clickables)
-               rooms[x].objects.Add(o);
-        }
+        rooms = db.getRooms();
 
         //load initial room
         currentRoom = 0;
@@ -86,7 +78,7 @@ public class roomController : MonoBehaviour {
     public void moveToRoom (string newRoom)
     {
         int roomNum = -1;
-        for(int x = 0; x < initialRooms.Length; x++)
+        for(int x = 0; x < rooms.Length; x++)
         {
             if (rooms[x].name == newRoom)
                 roomNum = x;
@@ -182,7 +174,7 @@ public class roomController : MonoBehaviour {
         player.GetComponent<playerController>().busy = false;
     }
 
-    public IEnumerator darkDocentRoom()
+    public IEnumerator darkDocentRoom(bool orb)
     {
         player.GetComponent<playerController>().busy = true;
 
@@ -204,7 +196,11 @@ public class roomController : MonoBehaviour {
         GameObject fullscreenImage = GameObject.Find("Fullscreen Image");
         Vector3 startingPos = fullscreenImage.GetComponent<RectTransform>().position;
         fullscreenImage.GetComponent<RectTransform>().position = Fader.GetComponent<RectTransform>().position;
-        fullscreenImage.GetComponent<Image>().overrideSprite = darkenedDocentRoom;
+
+        if (orb)
+            fullscreenImage.GetComponent<Image>().overrideSprite = orbDocentRoom;
+        else
+            fullscreenImage.GetComponent<Image>().overrideSprite = darkenedDocentRoom;
 
         //fade in
         startTime = Time.time;
@@ -222,7 +218,9 @@ public class roomController : MonoBehaviour {
             yield return null;
         }
 
-        yield return GameObject.Find("TextBox").GetComponent<textBox>().animateText("It's too dark to see...");
+        if (orb)
+            yield return GameObject.Find("TextBox").GetComponent<textBox>().animateText("The orb is too bright, I can't see a thing!");
+        else yield return GameObject.Find("TextBox").GetComponent<textBox>().animateText("It's too dark to see...");
 
         startTime = Time.time;
         fadeColor = Color.black;
@@ -254,6 +252,11 @@ public class roomController : MonoBehaviour {
         Fader.enabled = false;
 
         player.GetComponent<playerController>().busy = false;
+    }
+
+    public void save()
+    {
+        db.saveRooms(rooms);
     }
 
 }

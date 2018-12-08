@@ -32,7 +32,7 @@ MonoBehaviour:
   correctActions: []
   wrongAnimation: 0
   overrideWrongText: 1
-  wrongOverrideText: A set of lockpicks
+  wrongOverrideText: Lockpicks? But I don't know how to pick locks!
   wrongActions:
   - action: 1
     item: {fileID: 0}

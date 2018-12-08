@@ -32,7 +32,7 @@ MonoBehaviour:
   correctActions: []
   wrongAnimation: 0
   overrideWrongText: 1
-  wrongOverrideText: A sturdy belt
+  wrongOverrideText: Just touching this belt makes me feel strong.
   wrongActions:
   - action: 1
     item: {fileID: 0}

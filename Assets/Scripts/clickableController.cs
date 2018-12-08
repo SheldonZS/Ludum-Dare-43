@@ -6,14 +6,22 @@ using UnityEngine.UI;
 public class clickableController : MonoBehaviour {
 
     public clickable clickable;
+    RectTransform rt;
 
     private playerController player;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         player = GameObject.Find("Protag").GetComponent<playerController>();
+        rt = GetComponent<RectTransform>();
 
         loadClickable(clickable);
 	}
+
+    private void Update()
+    {
+        rt.localPosition = clickable.position;
+        rt.sizeDelta = clickable.size;
+    }
 
     public void onClick()
     {
@@ -27,8 +35,6 @@ public class clickableController : MonoBehaviour {
             return;
 
         clickable = c;
-
-        RectTransform rt = GetComponent<RectTransform>();
 
         if (c.sprite == null)
             GetComponent<Image>().color = Color.clear;

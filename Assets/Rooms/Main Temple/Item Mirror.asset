@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Item Mirror
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 40d04af0930369140914d2ee22eb0aaa, type: 3}
-  position: {x: 700, y: 522, z: 0}
-  size: {x: 75, y: 75}
+  position: {x: 700, y: 520.5, z: 0}
+  size: {x: 75, y: 65.5}
   moveTo: {x: 600, y: 170, z: 0}
   facingRight: 1
   handAnimation: 1

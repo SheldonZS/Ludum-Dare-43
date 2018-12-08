@@ -32,7 +32,7 @@ MonoBehaviour:
   correctActions: []
   wrongAnimation: 0
   overrideWrongText: 1
-  wrongOverrideText: A carved figure with a winged cap.
+  wrongOverrideText: Looks like a carved figure with a winged cap.
   wrongActions:
   - action: 1
     item: {fileID: 0}
